@@ -1,0 +1,32 @@
+---
+- name: Zsh and Git are installed
+  become: true
+  ansible.builtin.apt:
+    name:
+      - git
+      - zsh
+    state: latest
+
+- name: Oh My Zsh repository is cloned
+  become: true
+  ansible.builtin.git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: ~/.oh-my-zsh
+
+- name: Repository permissions are correct
+  ansible.builtin.file:
+    path: ~/.oh-my-zsh
+    mode: go-w
+  
+- name: Zsh is default shell
+  become: true
+  ansible.builtin.user:
+    name: '{{ ansible_user_id }}'
+    shell: /bin/zsh
+
+- name: .zshrc is present
+  ansible.builtin.template:
+    src: zshrc.j2
+    dest: ~/.zshrc
+    backup: yes
+    mode: u=rw,go=r
