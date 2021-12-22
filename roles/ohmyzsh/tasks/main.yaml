@@ -24,6 +24,11 @@
     name: '{{ ansible_user_id }}'
     shell: /bin/zsh
 
+- name: thefuck installed for Zsh plugin
+  become: true
+  ansible.builtin.pip:
+    name: thefuck==3.31
+
 - name: .zshrc is present
   ansible.builtin.template:
     src: zshrc.j2
