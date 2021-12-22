@@ -29,6 +29,11 @@
   ansible.builtin.pip:
     name: thefuck==3.31
 
+- name: fzf installed for Zsh plugin
+  become: true
+  ansible.builtin.apt:
+    name: fzf
+
 - name: .zshrc is present
   ansible.builtin.template:
     src: zshrc.j2
