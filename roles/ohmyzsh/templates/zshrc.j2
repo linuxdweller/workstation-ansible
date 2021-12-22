@@ -100,3 +100,13 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Set NeoVim as default editor.
+export EDITOR='nvim'
+
+# Git refuses to GPG sign without this.
+export GPG_TTY=$(tty)
+
+# Add Golang binaries to path.
+path+=('/usr/local/go/bin')
+export path
