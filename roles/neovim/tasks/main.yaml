@@ -1,0 +1,19 @@
+---
+- name: Add NeoVim Ubuntu PPA
+  become: true
+  ansible.builtin.apt_repository:
+    repo: ppa:neovim-ppa/stable
+    state: present
+
+- name: Install NeoVim
+  become: true
+  ansible.builtin.apt:
+    name: neovim=0.5.1*
+    state: present
+
+- name: NeoVim config is present
+  ansible.builtin.template:
+    src: init.vim
+    dest: ~/.config/nvim/init.vim
+    backup: yes
+    mode: u=rw,go=r
