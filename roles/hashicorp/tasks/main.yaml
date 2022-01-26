@@ -1,0 +1,17 @@
+---
+- name: Hashicorp GPG key is present
+  ansible.builtin.apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+
+- name: Hashicorp package repository is present
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64] https://apt.releases.hashicorp.com focal main
+
+- name: Latest Terraform and Packer are installed
+  become: true
+  ansible.builtin.apt:
+    name:
+      - terraform
+      - packer
+    state: latest
+    update_cache: yes
