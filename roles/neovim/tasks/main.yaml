@@ -1,15 +1,14 @@
 ---
-- name: Add NeoVim Ubuntu PPA
-  become: true
+- name: NeoVim Ubuntu PPA is present
   ansible.builtin.apt_repository:
     repo: ppa:neovim-ppa/stable
-    state: present
 
-- name: Install NeoVim
+- name: Latest NeoVim is installed
   become: true
   ansible.builtin.apt:
-    name: neovim=0.5.1*
-    state: present
+    name: neovim
+    state: latest
+    update_cache: yes
 
 - name: NeoVim config is present
   ansible.builtin.template:
