@@ -18,18 +18,18 @@
     path: ~/.oh-my-zsh
     mode: go-w
   
-- name: Zsh is default shell
+- name: Zsh is the default shell
   become: true
   ansible.builtin.user:
     name: '{{ ansible_user_id }}'
     shell: /bin/zsh
 
-- name: thefuck installed for Zsh plugin
+- name: thefuck is installed for Zsh plugin
   become: true
   ansible.builtin.pip:
     name: thefuck==3.31
 
-- name: fzf installed for Zsh plugin
+- name: fzf is installed for Zsh plugin
   become: true
   ansible.builtin.apt:
     name: fzf
