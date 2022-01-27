@@ -1,5 +1,5 @@
 ---
-- name: foo
+- name: Kubernetes keyring is present
   become: true
   ansible.builtin.get_url:
     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
