@@ -1,0 +1,17 @@
+---
+- name: Helm GPG key is present
+  become: true
+  ansible.builtin.apt_key:
+    url: https://baltocdn.com/helm/signing.asc
+
+- name: Helm package repository is present
+  become: true
+  ansible.builtin.apt_repository:
+    repo: deb https://baltocdn.com/helm/stable/debian/ all main
+
+- name: Latest Helm is installed
+  become: true
+  ansible.builtin.apt:
+    name: helm
+    state: latest
+    update_cache: true

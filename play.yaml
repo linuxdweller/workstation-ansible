@@ -5,3 +5,4 @@
     - ohmyzsh
     - hashicorp
     - kubectl
+    - helm

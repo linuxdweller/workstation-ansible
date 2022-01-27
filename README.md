@@ -8,6 +8,7 @@ Why not manage dotfiles like everyone else?
 
 Roles:
 * `hashicorp`: Latest Terraform and Packer are installed.
+* `helm`: Latest Helm is installed.
 * `kubectl`: Latest kubectl is installed.
 * `neovim`: Latest NeoVim is installed and configured.
 * `ohmyzsh`: Oh My Zsh is installed and configured, along with .
