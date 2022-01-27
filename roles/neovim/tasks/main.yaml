@@ -1,5 +1,6 @@
 ---
 - name: NeoVim Ubuntu PPA is present
+  become: true
   ansible.builtin.apt_repository:
     repo: ppa:neovim-ppa/stable
 
