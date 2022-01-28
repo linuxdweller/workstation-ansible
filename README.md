@@ -12,3 +12,6 @@ Roles:
 * `kubectl`: Latest kubectl is installed.
 * `neovim`: Latest NeoVim is installed and configured.
 * `ohmyzsh`: Oh My Zsh is installed and configured, along with .
+
+Gotchas:
+* Docker is not installed by the playbook. In WSL it is managed by Docker Desktop on Windows.

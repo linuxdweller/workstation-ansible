@@ -1,0 +1,10 @@
+---
+- name: Get latest version
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/rancher/k3d/releases/latest
+  register: latest_release
+
+- name: Debug
+  ansible.builtin.get_url:
+    url: latest_release.json | community.general.json_query("assets[?name=='k3d-linux-amd64'].url")
+    dest: /tmp/k3d
