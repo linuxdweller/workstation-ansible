@@ -12,7 +12,8 @@ Roles:
 * `k3d`: Latest K3d is installed.
 * `kubectl`: Latest kubectl is installed.
 * `neovim`: Latest NeoVim is installed and configured.
-* `ohmyzsh`: Oh My Zsh is installed and configured, along with .
+* `ohmyzsh`: Oh My Zsh is installed and configured, along with useful utilities.
+* `ssh`: Adds SSH private key stored in Ansible Vault.
 
 Gotchas:
 * Docker is not installed by the playbook. In WSL it is managed by Docker Desktop on Windows.

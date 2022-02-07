@@ -1,0 +1,14 @@
+---
+- name: Copy public key
+  ansible.builtin.copy:
+    src: id_ed25519.pub
+    dest: ~/.ssh/id_ed25519.pub
+    mode: 0600
+    backup: true
+
+- name: Copy private key
+  ansible.builtin.copy:
+    src: id_ed25519
+    dest: ~/.ssh/id_ed25519
+    mode: 0600
+    backup: true
