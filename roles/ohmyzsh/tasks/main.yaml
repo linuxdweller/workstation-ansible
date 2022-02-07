@@ -34,6 +34,10 @@
   ansible.builtin.apt:
     name: fzf
 
+- name: is_wsl fact is set
+  ansible.builtin.set_fact:
+    is_wsl: "{{ not not (ansible_kernel | regex_search('microsoft')) }}"
+
 - name: .zshrc is present
   ansible.builtin.template:
     src: zshrc.j2
