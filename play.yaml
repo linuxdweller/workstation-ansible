@@ -6,3 +6,4 @@
     - hashicorp
     - kubectl
     - helm
+    - k3d
