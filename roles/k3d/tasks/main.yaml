@@ -20,5 +20,5 @@
   ansible.builtin.get_url:
     url: "{{ latest_k3d_url }}"
     dest: /usr/local/bin/k3d
-    mode: 0751
+    mode: 0755
   when: not is_latest_k3d
