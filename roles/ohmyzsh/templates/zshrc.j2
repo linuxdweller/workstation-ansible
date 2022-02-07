@@ -112,8 +112,10 @@ source $ZSH/oh-my-zsh.sh
 # Set NeoVim as default editor.
 export EDITOR='nvim'
 
-# Git refuses to GPG sign without this.
+{% if is_wsl %}
+# Git refuses to GPG sign without this on WSL.
 export GPG_TTY=$(tty)
+{% endif %}
 
 # Add Golang binaries to path.
 path+=('/usr/local/go/bin')
