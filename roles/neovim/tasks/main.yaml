@@ -11,9 +11,26 @@
     state: latest
     update_cache: yes
 
+- name: packer.nvim repository is cloned
+  ansible.builtin.git:
+    repo: https://github.com/wbthomason/packer.nvim.git
+    dest: ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
 - name: NeoVim config is present
   ansible.builtin.template:
     src: init.vim
     dest: ~/.config/nvim/init.vim
+    backup: yes
+    mode: u=rw,go=r
+
+- name: Lua folder is present
+  ansible.builtin.file:
+    path: ~/.config/nvim/lua
+    state: directory
+
+- name: plugins.lua is present
+  ansible.builtin.template:
+    src: plugins.lua
+    dest: ~/.config/nvim/lua/plugins.lua
     backup: yes
     mode: u=rw,go=r
