@@ -13,7 +13,8 @@ Roles:
 * `kubectl`: Latest kubectl is installed.
 * `neovim`: Latest NeoVim is installed and configured.
 * `ohmyzsh`: Oh My Zsh is installed and configured, along with useful utilities.
-* `ssh`: Adds SSH private key stored in Ansible Vault.
+* `tmux`: tmux is installed and configured.
 
 Gotchas:
 * Docker is not installed by the playbook. In WSL it is managed by Docker Desktop on Windows.
+* Dependencies for Go and TS completion in NeoVim are not installed. [TS language server installation instructions](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver). Go completion simply requires Go installed.
