@@ -34,3 +34,10 @@ for _, lsp in pairs(servers) do
     capabilities = capabilities
   }
 end
+
+-- Setup go.nvim
+require('go').setup()
+require("go.format").goimport()
+
+-- Run gofmt + goimport on save
+vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)

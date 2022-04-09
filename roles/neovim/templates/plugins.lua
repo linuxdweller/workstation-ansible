@@ -12,4 +12,7 @@ return require('packer').startup(function()
 
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
+
+  use 'nvim-treesitter/nvim-treesitter'
+  use 'ray-x/go.nvim'
 end)
