@@ -2,6 +2,7 @@
 - hosts: localhost
   roles:
     - neovim
+    - tmux
     - ohmyzsh
     - hashicorp
     - kubectl

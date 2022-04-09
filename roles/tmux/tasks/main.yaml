@@ -1,0 +1,11 @@
+---
+- name: tmux is installed
+  become: true
+  ansible.builtin.apt:
+    name: tmux
+    state: latest
+
+- name: Config is present
+  ansible.builtin.copy:
+    src: .tmux.conf
+    dest: ~/.tmux.conf
