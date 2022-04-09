@@ -7,4 +7,3 @@
     - kubectl
     - helm
     - k3d
-    - ssh
