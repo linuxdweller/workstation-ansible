@@ -41,3 +41,22 @@
     dest: ~/.config/nvim/lua/init.lua
     backup: yes
     mode: u=rw,go=r
+
+- name: TypeScript language server is installed
+  community.general.npm:
+    name: typescript-language-server
+    global: true
+    state: latest
+
+- name: YAML language server is installed
+  community.general.npm:
+    name: yaml-language-server
+    global: true
+    state: latest
+
+- name: YAML language server is installed
+  community.general.npm:
+    name: dockerfile-language-server-nodejs
+    global: true
+    state: latest
+
