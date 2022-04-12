@@ -1,8 +1,8 @@
+-- Setup nvim-cmp.
 local cmp = require('cmp')
 
 cmp.setup({
   snippet = {
-    -- REQUIRED - you must specify a snippet engine
     expand = function(args)
       vim.fn["vsnip#anonymous"](args.body)
     end,
@@ -28,16 +28,16 @@ cmp.setup({
 
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local servers = { 'tsserver', 'gopls', 'dockerls', 'yamlls', 'pyright' }
+local servers = { 'tsserver', 'gopls', 'dockerls', 'yamlls' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     capabilities = capabilities
   }
 end
 
--- Setup go.nvim
+-- Setup go.nvim.
 require('go').setup()
 require("go.format").goimport()
 
--- Run gofmt + goimport on save
+-- Run gofmt + goimport on save.
 vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
