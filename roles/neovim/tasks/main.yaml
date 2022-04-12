@@ -54,9 +54,13 @@
     global: true
     state: latest
 
-- name: YAML language server is installed
+- name: Dockerfile language server is installed
   community.general.npm:
     name: dockerfile-language-server-nodejs
     global: true
     state: latest
 
+- name: Python language server is installed
+  ansible.builtin.pip:
+    name: pyright
+    state: latest
