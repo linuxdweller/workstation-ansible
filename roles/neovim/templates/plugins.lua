@@ -1,8 +1,6 @@
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
-  use 'tpope/vim-fugitive'
-
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
@@ -17,4 +15,9 @@ return require('packer').startup(function()
   use 'ray-x/go.nvim'
 
   use "EdenEast/nightfox.nvim"
+
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
 end)

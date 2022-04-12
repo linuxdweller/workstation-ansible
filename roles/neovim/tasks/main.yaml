@@ -64,3 +64,11 @@
   ansible.builtin.pip:
     name: pyright
     state: latest
+
+- name: search tools are installed
+  become: true
+  ansible.builtin.apt:
+    name:
+      - ripgrep
+      - fd-find
+    state: latest
