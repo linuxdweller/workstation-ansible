@@ -11,6 +11,9 @@ set softtabstop=2
 " Expand tabs to spaces.
 set expandtab
 
+" Set theme.
+colorscheme nightfox
+
 set completeopt=menu,menuone,noselect
 
 lua require('init')
