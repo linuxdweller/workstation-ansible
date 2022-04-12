@@ -44,3 +44,9 @@
     dest: ~/.zshrc
     backup: yes
     mode: u=rw,go=r
+
+- name: custom theme is present
+  ansible.builtin.template:
+    src: minima.zsh-theme
+    dest: ~/.oh-my-zsh/custom/themes/minima.zsh-theme
+    mode: u=rw,go=r
