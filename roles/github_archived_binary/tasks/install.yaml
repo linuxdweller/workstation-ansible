@@ -1,0 +1,41 @@
+---
+- name: Get release information
+  ansible.builtin.uri:
+    url: 'https://api.github.com/repos/{{ repo }}/releases/tags/{{ version }}'
+  register: release
+
+- name: Print release information
+  ansible.builtin.set_fact:
+    release_asset_names: '{{ release.json | community.general.json_query("assets[].name") }}'
+
+- name: Filter assets
+  ansible.builtin.set_fact:
+    asset_name: '{{ release_asset_names | select("match", asset_regex) | first }}'
+
+- name: Find download url
+  ansible.builtin.set_fact:
+    download_url: 'https://github.com/{{ repo }}/releases/download/{{ version }}/{{ asset_name }}'
+    working_directory: '/tmp/{{ asset_name | hash("sha1") }}'
+
+- name: Temporary directory exists
+  ansible.builtin.file:
+    path: '{{ working_directory }}'
+    state: directory
+
+- name: Download and unarchive
+  ansible.builtin.unarchive:
+    src: '{{ download_url }}'
+    remote_src: true
+    dest: '{{ working_directory }}'
+
+- name: Install binary
+  become: true
+  ansible.builtin.copy:
+    src: '{{ working_directory }}/{{ executable_glob }}'
+    dest: '{{ dest }}'
+    mode: '755'
+
+- name: Temporary files are absent
+  ansible.builtin.file:
+    path: '{{ working_directory }}'
+    state: absent

@@ -1,0 +1,7 @@
+---
+  repo: 'jarun/nnn'
+  version: 'v4.4'
+  executable_glob: 'nnn-static'
+  asset_regex: 'nnn-static-.*\.x86_64\.tar\.gz'
+  version_command: "/usr/bin/sh -c 'echo v$(nnn -V)'"
+  dest: '/usr/local/bin/nnn'

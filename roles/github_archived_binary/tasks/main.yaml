@@ -1,0 +1,14 @@
+---
+- name: Get version
+  ansible.builtin.command: '{{ version_command }}'
+  ignore_errors: true
+  changed_when: false
+  register: version_command_output
+
+- name: Set is_present fact
+  ansible.builtin.set_fact:
+    is_present: '{{ not version_command_output.failed and version_command_output.stdout | regex_search(version | regex_escape()) }}'
+
+- name: Install
+  ansible.builtin.include_tasks: install.yaml
+  when: not is_present
