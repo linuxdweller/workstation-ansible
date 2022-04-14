@@ -20,4 +20,32 @@ return require('packer').startup(function()
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
+
+  use {
+	  "luukvbaal/nnn.nvim",
+    config = function() require("nnn").setup() end
+  }
+
+  use {
+    'echasnovski/mini.nvim',
+    branch = 'stable',
+    config = function()
+      require('mini.comment').setup()
+      require('mini.cursorword').setup({
+        delay = 0
+      })
+      require('mini.indentscope').setup({
+        delay = 0,
+        animation = require('mini.indentscope').gen_animation('none'),
+        symbol = '▏'
+      })
+      require('mini.pairs').setup({
+        mappings = {
+          ['<'] = { action = 'open', pair = '<>', neigh_pattern = '[^\\].'},
+          ['>'] = { action = 'close', pair = '<>', neigh_pattern = '[^\\].'}
+        }
+      })
+      require('mini.surround').setup()
+    end
+  }
 end)
