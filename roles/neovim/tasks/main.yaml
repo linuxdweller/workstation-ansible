@@ -35,13 +35,6 @@
     backup: yes
     mode: u=rw,go=r
 
-- name: init.lua is present
-  ansible.builtin.template:
-    src: init.lua
-    dest: ~/.config/nvim/lua/init.lua
-    backup: yes
-    mode: u=rw,go=r
-
 - name: TypeScript language server is installed
   community.general.npm:
     name: typescript-language-server

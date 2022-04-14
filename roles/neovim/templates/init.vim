@@ -5,11 +5,6 @@ lua require('plugins')
 set clipboard+=unnamedplus
 " Display line numbers.
 set number
-" Columns occupied by a tab.
-set tabstop=2
-set softtabstop=2
-" Expand tabs to spaces.
-set expandtab
 
 " Set theme.
 colorscheme nightfox
@@ -21,5 +16,3 @@ nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 set completeopt=menu,menuone,noselect
-
-lua require('init')
