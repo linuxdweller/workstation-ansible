@@ -55,6 +55,9 @@ return require('packer').startup(function()
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
 
+  -- Snippets for many languages.
+  use "rafamadriz/friendly-snippets"
+
   -- Go laungauge integration.
   use {
     'ray-x/go.nvim',
