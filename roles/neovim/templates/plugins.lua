@@ -28,7 +28,7 @@ return require('packer').startup(function()
       local cmp = require('cmp')
       cmp.setup({
         snippet = {
-          expans = function(args)
+          expand = function(args)
             vim.fn["vsnip#anonymous"](args.body)
           end
         },
