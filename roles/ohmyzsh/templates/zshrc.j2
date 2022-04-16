@@ -77,10 +77,18 @@ ZSH_THEME="minima"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
-plugins+=(nvm)
+
 plugins+=(thefuck)
 plugins+=(fzf)
 plugins+=(dotenv)
+
+plugins+=(tmux)
+# Enable UTF-8 tmux feature.
+ZSH_TMUX_UNICODE=true
+# Create session on startup instead of autoconnecting.
+ZSH_TMUX_AUTOCONNECT=false
+
+plugins+=(nvm)
 plugins+=(kubectl)
 
 source $ZSH/oh-my-zsh.sh
@@ -123,3 +131,4 @@ export GPG_TTY=$(tty)
 path+=('/usr/local/go/bin')
 path+=('/home/lior/go/bin')
 export path
+
