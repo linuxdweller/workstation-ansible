@@ -43,7 +43,7 @@ return require('packer').startup(function()
           ['<Tab>'] = cmp.mapping.select_next_item()
         }),
         sources = cmp.config.sources({
-          { name = 'nvim-lsp'},
+          { name = 'nvim_lsp'},
           { name = 'vsnip' }
         }, {
           { name = 'buffer' }
@@ -54,6 +54,7 @@ return require('packer').startup(function()
 
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
+  use 'hrsh7th/vim-vsnip-integ'
 
   -- Snippets for many languages.
   use "rafamadriz/friendly-snippets"
