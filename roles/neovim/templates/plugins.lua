@@ -7,12 +7,17 @@ return require('packer').startup(function()
       local capabilities = require('cmp_nvim_lsp').update_capabilities(
         vim.lsp.protocol.make_client_capabilities()
       )
+      local lspconfig = require('lspconfig')
       local servers = { 'tsserver', 'gopls', 'dockerls', 'yamlls' }
       for _, lsp in pairs(servers) do
-        require('lspconfig')[lsp].setup {
+        lspconfig[lsp].setup {
           capabilities = capabilities
         }
       end
+      lspconfig.emmet_ls.setup({
+        capabilities = capabilities,
+        filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' }
+      })
     end
   }
  

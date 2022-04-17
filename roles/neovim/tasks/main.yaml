@@ -35,6 +35,7 @@
     backup: yes
     mode: u=rw,go=r
 
+  # TODO Add typescript compiler
 - name: TypeScript language server is installed
   community.general.npm:
     name: typescript-language-server
@@ -52,6 +53,14 @@
     name: dockerfile-language-server-nodejs
     global: true
     state: latest
+
+# Uncomment once this merges:
+# https://github.com/aca/emmet-ls/pull/39
+# - name: Emmet abbreviation language server is installed
+#   community.general.npm:
+#     name: emmet-ls
+#     global: true
+#     state: latest
 
 - name: Python language server is installed
   ansible.builtin.pip:
