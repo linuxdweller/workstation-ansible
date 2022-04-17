@@ -82,7 +82,13 @@ return require('packer').startup(function()
   -- Search window.
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { 'nvim-lua/plenary.nvim' }
+    requires = {
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    },
+    config = function()
+      require('telescope').load_extension('fzf')
+    end
   }
 
   use {
