@@ -1,20 +1,4 @@
 ---
-- name: NeoVim Ubuntu PPA is absent
-  become: true
-  ansible.builtin.apt_repository:
-    repo: ppa:neovim-ppa/stable
-    state: absent
-
-- name: NeoVim is not intalled with apt.
-  become: true
-  ansible.builtin.apt:
-    name:
-      - neovim
-      - neovim-runtime
-      - python3-neovim
-    state: absent
-    update_cache: yes
-
 - name: Get NeoVim version
   ansible.builtin.command: nvim --version
   ignore_errors: true
