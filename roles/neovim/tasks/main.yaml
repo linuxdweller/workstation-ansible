@@ -84,7 +84,3 @@
       - ripgrep
       - fd-find
     state: latest
-
-- name: Sync Packer dependencies
-  ansible.builtin.command: nvim --headless +PackerSync +q
-
