@@ -1,15 +1,41 @@
 ---
-- name: NeoVim Ubuntu PPA is present
+- name: NeoVim Ubuntu PPA is absent
   become: true
   ansible.builtin.apt_repository:
     repo: ppa:neovim-ppa/stable
+    state: absent
 
-- name: Latest NeoVim is installed
+- name: NeoVim is not intalled with apt.
   become: true
   ansible.builtin.apt:
-    name: neovim
-    state: latest
+    name:
+      - neovim
+      - neovim-runtime
+      - python3-neovim
+    state: absent
     update_cache: yes
+
+- name: Get NeoVim version
+  ansible.builtin.command: nvim --version
+  ignore_errors: true
+  changed_when: false
+  register: neovim_version_check
+
+- name: Set is_neovim_present fact
+  ansible.builtin.set_fact:
+    is_neovim_present: '{{ not neovim_version_check.failed and neovim_version_check.stdout | regex_search(neovim_version | regex_escape()) }}'
+
+- name: Download NeoVim Debian package
+  ansible.builtin.get_url:
+    url: https://github.com/neovim/neovim/releases/download/{{ neovim_version }}/nvim-linux64.deb
+    dest: /tmp/neovim.deb
+  when: not is_neovim_present
+
+- name: Install NeoVim Debian package
+  become: true
+  ansible.builtin.apt:
+    deb: /tmp/neovim.deb
+  when: not is_neovim_present
 
 - name: packer.nvim repository is cloned
   ansible.builtin.git:
