@@ -8,7 +8,6 @@
     state: latest
 
 - name: Oh My Zsh repository is cloned
-  become: true
   ansible.builtin.git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
     dest: ~/.oh-my-zsh
