@@ -3,4 +3,4 @@
 # https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/
 docker_version: '20.10.16'
 docker_compose_version: '2.5.0'
-containerd_version: ''
+containerd_version: '1.6.4-1'
