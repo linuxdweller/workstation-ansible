@@ -7,6 +7,7 @@
     - role: hashicorp
     - role: kubectl
     - role: helm
+    - role: docker
     - role: k3d
     # See dynamic role reuse as well.
     # https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html#including-roles-dynamic-reuse
