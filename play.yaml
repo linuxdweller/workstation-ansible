@@ -1,9 +1,9 @@
 ---
 - hosts: localhost
   roles:
-    - role: neovim
-    - role: tmux
     - role: ohmyzsh
+    - role: tmux
+    - role: neovim
     - role: hashicorp
     - role: kubectl
     - role: helm
