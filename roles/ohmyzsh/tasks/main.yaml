@@ -23,6 +23,11 @@
     name: '{{ ansible_user_id }}'
     shell: /bin/zsh
 
+- name: pip is installed for thefuck download
+  become: true
+  ansible.builtin.apt:
+    name: python3-pip
+
 - name: thefuck is installed for Zsh plugin
   become: true
   ansible.builtin.pip:
