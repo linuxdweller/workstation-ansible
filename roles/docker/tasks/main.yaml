@@ -9,16 +9,6 @@
   ansible.builtin.apt:
     deb: /tmp/containerd.deb
 
-- name: Download Docker Debian package
-  ansible.builtin.get_url:
-    url: https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-ce_{{ docker_version }}~3-0~ubuntu-jammy_amd64.deb
-    dest: /tmp/docker-ce.deb
-
-- name: Install Docker Debian package
-  become: true
-  ansible.builtin.apt:
-    deb: /tmp/docker-ce.deb
-
 - name: Download Docker CLI Debian package
   ansible.builtin.get_url:
     url: https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-ce-cli_{{ docker_version }}~3-0~ubuntu-jammy_amd64.deb
@@ -28,6 +18,16 @@
   become: true
   ansible.builtin.apt:
     deb: /tmp/docker-ce-cli.deb
+
+- name: Download Docker Debian package
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-ce_{{ docker_version }}~3-0~ubuntu-jammy_amd64.deb
+    dest: /tmp/docker-ce.deb
+
+- name: Install Docker Debian package
+  become: true
+  ansible.builtin.apt:
+    deb: /tmp/docker-ce.deb
 
 - name: Download Docker Compose Debian package
   ansible.builtin.get_url:
