@@ -17,3 +17,11 @@
       - packer
     state: latest
     update_cache: yes
+
+- name: Latest Language Server is installed for NeoVim
+  become: true
+  ansible.builtin.apt:
+    name:
+      - terraform-ls
+    state: latest
+    update_cache: yes

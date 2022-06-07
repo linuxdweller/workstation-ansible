@@ -78,6 +78,7 @@
 #     state: latest
 
 - name: Python language server is installed
+  become: true
   ansible.builtin.pip:
     name: pyright
     state: latest

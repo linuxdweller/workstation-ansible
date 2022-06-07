@@ -8,7 +8,7 @@ return require('packer').startup(function()
         vim.lsp.protocol.make_client_capabilities()
       )
       local lspconfig = require('lspconfig')
-      local servers = { 'tsserver', 'gopls', 'dockerls', 'yamlls' }
+      local servers = { 'tsserver', 'gopls', 'pyright', 'dockerls', 'yamlls', 'terraformls' }
       for _, lsp in pairs(servers) do
         lspconfig[lsp].setup {
           capabilities = capabilities
