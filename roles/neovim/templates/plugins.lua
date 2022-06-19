@@ -91,11 +91,13 @@ return require('packer').startup(function()
     end
   }
 
+  -- File browser.
   use {
     "luukvbaal/nnn.nvim",
     config = function() require("nnn").setup() end
   }
 
+  -- Commenting/uncommenting, highlight of word under the cursor, bracket pairing and surrounding.
   use {
     'echasnovski/mini.nvim',
     branch = 'stable',
@@ -124,6 +126,7 @@ return require('packer').startup(function()
     end
   }
 
+  -- Indent guide.
   use {
     'lukas-reineke/indent-blankline.nvim',
     tag = 'v2.18.4',
@@ -132,6 +135,10 @@ return require('packer').startup(function()
     end
   }
 
+  -- Automatic indenent detection.
+  use 'tpope/vim-sleuth'
+
+  -- Motion.
   use {
     'ggandor/leap.nvim',
     config = function()
@@ -139,9 +146,7 @@ return require('packer').startup(function()
     end
   }
 
-  -- Automatic indenent detection.
-  use 'tpope/vim-sleuth'
-
+  -- Smooth scrolling.
   use {
     'declancm/cinnamon.nvim',
     config = function()
