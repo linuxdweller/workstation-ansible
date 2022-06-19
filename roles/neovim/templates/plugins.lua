@@ -121,6 +121,32 @@ return require('packer').startup(function()
     config = function() require("nnn").setup() end
   }
 
+  use {
+    'lewis6991/gitsigns.nvim',
+    tag = 'release',
+    config = function()
+      require('gitsigns').setup()
+      vim.api.nvim_set_keymap("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<cr>",
+        {silent = true, noremap = true}
+      )
+      vim.api.nvim_set_keymap("v", "<leader>hs", "<cmd>Gitsigns stage_hunk<cr>",
+        {silent = true, noremap = true}
+      )
+      vim.api.nvim_set_keymap("n", "<leader>hr", "<cmd>Gitsigns reset_hunk<cr>",
+        {silent = true, noremap = true}
+      )
+      vim.api.nvim_set_keymap("v", "<leader>hr", "<cmd>Gitsigns reset_hunk<cr>",
+        {silent = true, noremap = true}
+      )
+      vim.api.nvim_set_keymap("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<cr>",
+        {silent = true, noremap = true}
+      )
+      vim.api.nvim_set_keymap("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<cr>",
+        {silent = true, noremap = true}
+      )
+    end
+  }
+
   -- Commenting/uncommenting, highlight of word under the cursor, bracket pairing and surrounding.
   use {
     'echasnovski/mini.nvim',
