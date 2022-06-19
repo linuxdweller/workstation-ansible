@@ -8,7 +8,7 @@ return require('packer').startup(function()
         vim.lsp.protocol.make_client_capabilities()
       )
       local lspconfig = require('lspconfig')
-      local servers = { 'tsserver', 'gopls', 'pyright', 'dockerls', 'yamlls', 'terraformls' }
+      local servers = { 'tsserver', 'gopls', 'pyright', 'dockerls', 'terraformls' }
       for _, lsp in pairs(servers) do
         lspconfig[lsp].setup {
           capabilities = capabilities
@@ -18,6 +18,8 @@ return require('packer').startup(function()
         capabilities = capabilities,
         filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' }
       })
+      local yamlConfig = require('yaml-companion').setup()
+      lspconfig.yamlls.setup(yamlConfig)
     end
   }
  
@@ -112,6 +114,21 @@ return require('packer').startup(function()
     },
     config = function()
       require('telescope').load_extension('fzf')
+    end
+  }
+
+  use {
+    "someone-stole-my-name/yaml-companion.nvim",
+    requires = {
+        { "neovim/nvim-lspconfig" },
+        { "nvim-lua/plenary.nvim" },
+        { "nvim-telescope/telescope.nvim" }
+    },
+    config = function()
+      require("telescope").load_extension("yaml_schema")
+      vim.api.nvim_set_keymap("n", "<leader>fy", "<cmd>Telescope yaml_schema<cr>",
+        {silent = true, noremap = true}
+      )
     end
   }
 
