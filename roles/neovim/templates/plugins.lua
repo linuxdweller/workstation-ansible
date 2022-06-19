@@ -141,4 +141,11 @@ return require('packer').startup(function()
 
   -- Automatic indenent detection.
   use 'tpope/vim-sleuth'
+
+  use {
+    'declancm/cinnamon.nvim',
+    config = function()
+      require('cinnamon').setup()
+    end
+  }
 end)
