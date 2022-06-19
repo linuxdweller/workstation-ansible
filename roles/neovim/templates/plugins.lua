@@ -104,11 +104,6 @@ return require('packer').startup(function()
       require('mini.cursorword').setup({
         delay = 0
       })
-      require('mini.indentscope').setup({
-        delay = 0,
-        animation = require('mini.indentscope').gen_animation('none'),
-        symbol = '▏'
-      })
       require('mini.pairs').setup({
         mappings = {
           ['<'] = { action = 'open', pair = '<>', neigh_pattern = '[^\\].'},
@@ -126,6 +121,14 @@ return require('packer').startup(function()
           update_n_lines = '<leader>sn', -- Update `n_lines`
         },
       })
+    end
+  }
+
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    tag = 'v2.18.4',
+    config = function()
+      require('indent_blankline').setup()
     end
   }
 
