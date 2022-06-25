@@ -32,6 +32,8 @@ return require('packer').startup(function()
       'hrsh7th/cmp-cmdline'
     },
     config = function()
+      vim.o.completeopt='menu,menuone,noselect'
+
       local cmp = require('cmp')
       cmp.setup({
         snippet = {
