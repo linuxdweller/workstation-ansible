@@ -31,12 +31,17 @@
     path: ~/.config/nvim
     state: directory
 
+- name: Vimscript config is absent
+  ansible.builtin.file:
+    path: ~/.config/nvim/init.vim
+    state: absent
+
 - name: NeoVim config is present
   ansible.builtin.template:
-    src: init.vim
-    dest: ~/.config/nvim/init.vim
+    src: init.lua
+    dest: ~/.config/nvim/init.lua
     backup: yes
-    mode: u=rw,go=r
+    mode: u=rw,go=rgo=r
 
 - name: Lua folder is present
   ansible.builtin.file:

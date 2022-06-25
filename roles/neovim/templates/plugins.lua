@@ -32,7 +32,7 @@ return require('packer').startup(function()
       'hrsh7th/cmp-cmdline'
     },
     config = function()
-      vim.o.completeopt='menu,menuone,noselect'
+      vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 
       local cmp = require('cmp')
       cmp.setup({
@@ -105,7 +105,12 @@ return require('packer').startup(function()
   }
 
   -- Theme.
-  use "EdenEast/nightfox.nvim"
+  use {
+    'EdenEast/nightfox.nvim',
+    config = function()
+      vim.cmd('colorscheme nightfox')
+    end
+  }
 
   -- Search window.
   use {
