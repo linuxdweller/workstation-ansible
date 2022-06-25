@@ -37,7 +37,7 @@
     state: absent
 
 - name: NeoVim config is present
-  ansible.builtin.template:
+  ansible.builtin.copy:
     src: init.lua
     dest: ~/.config/nvim/init.lua
     backup: yes
@@ -49,7 +49,7 @@
     state: directory
 
 - name: plugins.lua is present
-  ansible.builtin.template:
+  ansible.builtin.copy:
     src: plugins.lua
     dest: ~/.config/nvim/lua/plugins.lua
     backup: yes
