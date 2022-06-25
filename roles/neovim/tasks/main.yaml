@@ -69,13 +69,11 @@
     global: true
     state: latest
 
-# Uncomment once this merges:
-# https://github.com/aca/emmet-ls/pull/39
-# - name: Emmet abbreviation language server is installed
-#   community.general.npm:
-#     name: emmet-ls
-#     global: true
-#     state: latest
+- name: Emmet abbreviation language server is installed
+  community.general.npm:
+    name: emmet-ls
+    global: true
+    state: latest
 
 - name: Python language server is installed
   become: true
