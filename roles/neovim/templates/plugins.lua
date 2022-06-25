@@ -153,7 +153,10 @@ return require('packer').startup(function()
   -- File browser.
   use {
     "luukvbaal/nnn.nvim",
-    config = function() require("nnn").setup() end
+    config = function()
+      require("nnn").setup()
+      vim.api.nvim_set_keymap('n', '<leader>nn', "<cmd>NnnPicker<cr>", {noremap = true})
+    end
   }
 
   use {
