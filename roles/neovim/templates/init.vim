@@ -21,3 +21,7 @@ nnoremap <leader>fd <cmd>lua require('telescope.builtin').lsp_definitions()<cr>
 nnoremap <leader>fi <cmd>lua require('telescope.builtin').lsp_implementations()<cr>
 
 set completeopt=menu,menuone,noselect
+
+lua <<EOF
+vim.api.nvim_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", {noremap = true})
+EOF
