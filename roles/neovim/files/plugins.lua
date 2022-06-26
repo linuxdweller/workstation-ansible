@@ -98,9 +98,14 @@ return require('packer').startup(function()
     requires = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
       require('go').setup()
-      require("go.format").goimport()
+      local go_format = require("go.format")
       -- Run gofmt + goimport on save.
-      vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]], false)
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        pattern = '*.go',
+        callback = function()
+          go_format.goimport()
+        end
+      })
     end
   }
 
