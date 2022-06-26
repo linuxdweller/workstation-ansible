@@ -32,6 +32,7 @@
   become: true
   ansible.builtin.copy:
     src: '{{ working_directory }}/{{ executable_glob }}'
+    remote_src: true
     dest: '{{ dest }}'
     mode: '755'
 

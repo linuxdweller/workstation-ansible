@@ -55,26 +55,38 @@
     backup: yes
     mode: u=rw,go=r
 
+- name: Node is present for installing language servers with npm
+  become: true
+  ansible.builtin.apt:
+    name:
+      - nodejs
+      - npm
+    state: latest
+
   # TODO Add typescript compiler
 - name: TypeScript language server is installed
+  become: true
   community.general.npm:
     name: typescript-language-server
     global: true
     state: latest
 
 - name: YAML language server is installed
+  become: true
   community.general.npm:
     name: yaml-language-server
     global: true
     state: latest
 
 - name: Dockerfile language server is installed
+  become: true
   community.general.npm:
     name: dockerfile-language-server-nodejs
     global: true
     state: latest
 
 - name: Emmet abbreviation language server is installed
+  become: true
   community.general.npm:
     name: emmet-ls
     global: true
