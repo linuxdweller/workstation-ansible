@@ -21,6 +21,14 @@
         asset_regex: 'nnn-static-.*\.x86_64\.tar\.gz'
         version_command: "/usr/bin/sh -c 'echo v$(nnn -V)'"
         dest: '/usr/local/bin/nnn'
+    - role: github_archived_binary
+      vars:
+        repo: tilt-dev/tilt
+        version: v0.30.4
+        executable_glob: tilt
+        asset_regex: 'tilt.*linux\.x86_64\.tar\.gz'
+        version_command: tilt version
+        dest: '/usr/local/bin/tilt'
     # - role: github_archived_binary
     #   vars:
     #     repo: 'pdfcpu/pdfcpu'
