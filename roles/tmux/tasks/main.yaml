@@ -5,6 +5,16 @@
     name: tmux
     state: latest
 
+- name: plugins directory is present
+  ansible.builtin.file:
+    path: ~/.tmux/plugins
+    state: directory
+
+- name: tpm is present
+  ansible.builtin.git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: ~/.tmux/plugins/tpm
+
 - name: Config is present
   ansible.builtin.copy:
     src: .tmux.conf

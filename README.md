@@ -17,5 +17,7 @@ Roles:
 * `tmux`: tmux is installed and configured.
 
 Gotchas:
+* To apply NeoVim configuration, run `:PackerSync`.
+* To apply `tmux` configuration, hit `C-b I`.
 * `docker` role does not run on WSL because in WSL Docker is managed by Docker Desktop on Windows.
 * Dependencies for Go and TS completion in NeoVim are not installed. [TS language server installation instructions](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver). Go completion requires `gopls`.
