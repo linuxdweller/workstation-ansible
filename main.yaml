@@ -9,7 +9,7 @@
     - role: helm
     - role: docker
       # Do not manage Docker in WSL, as it is managed by Docker Desktop on Windows.
-      when: '"microsoft" not in ansible_facts["kernel"]'
+      when: '"microsoft" not in ansible_facts["kernel"] and ansible_facts["distribution_version"] == "22.04"'
     - role: k3d
     # See dynamic role reuse as well.
     # https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html#including-roles-dynamic-reuse
