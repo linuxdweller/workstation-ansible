@@ -229,6 +229,15 @@ return require('packer').startup(function()
     end
   }
 
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = { "lua", "dockerfile", "go", "hcl", "html", "javascript", "json", "python", "scss", "toml", "typescript", "tsx", "yaml" }
+      })
+    end
+  }
+
   -- File browser.
   use {
     "luukvbaal/nnn.nvim",
@@ -299,7 +308,8 @@ return require('packer').startup(function()
     tag = 'v2.18.4',
     config = function()
       require('indent_blankline').setup({
-        char = '▏'
+        char = '▏',
+        show_current_context = true
       })
     end
   }
