@@ -79,7 +79,10 @@ ZSH_THEME="minima"
 plugins=(git)
 
 plugins+=(fzf)
+plugins+=(ripgrep)
 plugins+=(dotenv)
+plugins+=(copypath)
+plugins+=(sudo)
 
 plugins+=(tmux)
 # Enable UTF-8 tmux feature.
@@ -88,7 +91,13 @@ ZSH_TMUX_UNICODE=true
 ZSH_TMUX_AUTOCONNECT=false
 
 plugins+=(nvm)
+plugins+=(npm)
+plugins+=(pip)
+plugins+=(poetry)
+plugins+=(golang)
 plugins+=(kubectl)
+plugins+=(helm)
+plugins+=(terraform)
 
 source $ZSH/oh-my-zsh.sh
 
