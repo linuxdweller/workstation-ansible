@@ -209,7 +209,8 @@ return require('packer').startup(function()
           null_ls.builtins.code_actions.gitsigns,
           null_ls.builtins.diagnostics.ansiblelint,
           null_ls.builtins.diagnostics.eslint,
-          null_ls.builtins.diagnostics.flake8,
+          -- Should use either flake8 or black, not both.
+          -- null_ls.builtins.diagnostics.flake8,
           null_ls.builtins.diagnostics.golangci_lint,
           null_ls.builtins.diagnostics.hadolint,
           null_ls.builtins.diagnostics.mypy,
