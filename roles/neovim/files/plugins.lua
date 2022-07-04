@@ -102,9 +102,7 @@ return require('packer').startup(function()
       -- Run gofmt + goimport on save.
       vim.api.nvim_create_autocmd('BufWritePre', {
         pattern = '*.go',
-        callback = function()
-          go_format.goimport()
-        end
+        callback = go_format.goimport
       })
     end
   }
