@@ -223,7 +223,22 @@ return require('packer').startup(function()
           null_ls.builtins.formatting.gofmt,
           null_ls.builtins.formatting.goimports,
           null_ls.builtins.formatting.prettier,
-          null_ls.builtins.formatting.stylelint
+          null_ls.builtins.formatting.stylelint,
+
+          -- Null hover generator.
+          -- Running vim.lsp.buf.hover() errors when there is no language server
+          -- supporting hover attached.
+          -- Having a generator respond with empty hovers prevents that error.
+          {
+            name = "hover.null",
+            method = null_ls.methods.HOVER,
+            filetypes = {},
+            generator = {
+              fn = function(_, done)
+                done({})
+              end
+            }
+          }
         }
       })
     end
