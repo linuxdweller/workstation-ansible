@@ -15,20 +15,20 @@
     # https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html#including-roles-dynamic-reuse
     - role: github_archived_binary
       vars:
-        repo: 'jarun/nnn'
-        version: 'v4.4'
-        executable_glob: 'nnn-static'
-        asset_regex: 'nnn-static-.*\.x86_64\.tar\.gz'
-        version_command: "/usr/bin/sh -c 'echo v$(nnn -V)'"
-        dest: '/usr/local/bin/nnn'
+        repo: jarun/nnn
+        version: v4.4
+        executable_glob: nnn-static
+        asset_regex: nnn-static-.*\.x86_64\.tar\.gz
+        version_command: nnn -V
+        dest: /usr/local/bin/nnn
     - role: github_archived_binary
       vars:
         repo: tilt-dev/tilt
         version: v0.30.4
         executable_glob: tilt
-        asset_regex: 'tilt.*linux\.x86_64\.tar\.gz'
+        asset_regex: tilt.*linux\.x86_64\.tar\.gz
         version_command: tilt version
-        dest: '/usr/local/bin/tilt'
+        dest: /usr/local/bin/tilt
     # - role: github_archived_binary
     #   vars:
     #     repo: 'pdfcpu/pdfcpu'

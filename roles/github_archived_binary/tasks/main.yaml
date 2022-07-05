@@ -7,7 +7,7 @@
 
 - name: Set is_present fact
   ansible.builtin.set_fact:
-    is_present: '{{ not version_command_output.failed and version_command_output.stdout | regex_search(version | regex_escape()) }}'
+    is_present: '{{ not version_command_output.failed and version_command_output.stdout | regex_search(version | trim("v") | regex_escape()) }}'
 
 - name: Install
   ansible.builtin.include_tasks: install.yaml
