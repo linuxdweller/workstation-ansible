@@ -16,5 +16,15 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "rounded"
 })
 vim.api.nvim_create_autocmd('CursorHold', {
-  callback = vim.lsp.buf.hover
+  callback = function()
+    -- Only call hover() if any attached LSP client supports hover.
+    clients = vim.lsp.buf_get_clients()
+    for _, client in pairs(clients) do
+      -- Ignore null-ls because it does not provide hover but is configured as if it does.
+      if client.name ~= "null-ls" and client.server_capabilities.hoverProvider then
+        vim.lsp.buf.hover()
+        return
+      end
+    end
+  end
 })
