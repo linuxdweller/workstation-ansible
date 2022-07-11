@@ -49,7 +49,8 @@ return require('packer').startup(function()
           ['<C-e>'] = cmp.mapping.abort(),
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
           -- Use tab to select next item.
-          ['<Tab>'] = cmp.mapping.select_next_item()
+          ['<Tab>'] = cmp.mapping.select_next_item(),
+          ['<S-Tab>'] = cmp.mapping.select_prev_item()
         }),
         sources = cmp.config.sources({
           { name = 'nvim_lsp'},
