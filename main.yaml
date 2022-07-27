@@ -37,6 +37,14 @@
         asset_regex: vale_.*_Linux_64-bit\.tar\.gz
         version_command: vale --version
         dest: /usr/local/bin/vale
+    - role: github_archived_binary
+      vars:
+        repo: golangci/golangci-lint
+        version: v1.47.2
+        executable_glob: golangci-lint-1.47.2-linux-amd64/golangci-lint
+        asset_regex: golangci-lint-.*-linux-amd64\.tar\.gz
+        version_command: golangci-lint version
+        dest: /usr/local/bin/golangci-lint
     # - role: github_archived_binary
     #   vars:
     #     repo: 'pdfcpu/pdfcpu'
