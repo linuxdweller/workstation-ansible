@@ -5,6 +5,11 @@ vim.opt.clipboard = 'unnamedplus'
 -- Display line numbers.
 vim.opt.number = true
 
+-- Persist undo trees.
+vim.opt.undofile = true
+vim.opt.undodir = '~/.nvim/undo'
+vim.opt.undolevels = 10000
+
 vim.api.nvim_set_keymap('n', '<leader>rn', '', {noremap = true, callback = vim.lsp.buf.rename})
 
 -- Show LSP hover when holding the cursor for 500ms.
