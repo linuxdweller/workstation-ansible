@@ -54,7 +54,8 @@ return require('packer').startup(function()
         }),
         sources = cmp.config.sources({
           { name = 'nvim_lsp'},
-          { name = 'vsnip' }
+          { name = 'vsnip' },
+          { name = 'orgmode' }
         }, {
           { name = 'buffer' }
         })
@@ -233,8 +234,24 @@ return require('packer').startup(function()
     "nvim-treesitter/nvim-treesitter",
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "lua", "dockerfile", "go", "hcl", "html", "javascript", "json", "python", "scss", "toml", "typescript", "tsx", "yaml" }
+        ensure_installed = { "lua", "dockerfile", "go", "hcl", "html", "javascript", "json", "python", "scss", "toml", "typescript", "tsx", "yaml", "org" },
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = { "org" }
+        }
       })
+    end
+  }
+
+  use {
+    "nvim-orgmode/orgmode",
+    config = function()
+      orgmode = require("orgmode")
+      orgmode.setup({
+        org_agenda_files = {"~/org/**/*"},
+        org_default_notes_file = "~/org/refile.org"
+      })
+      orgmode.setup_ts_grammar()
     end
   }
 
