@@ -269,7 +269,6 @@ return require('packer').startup(function()
 
   use {
     'lewis6991/gitsigns.nvim',
-    tag = 'release',
     config = function()
       require('gitsigns').setup()
       vim.api.nvim_set_keymap("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<cr>",
