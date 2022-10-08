@@ -271,10 +271,10 @@ return require('packer').startup(function()
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup()
-      vim.api.nvim_set_keymap("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<cr>",
+      vim.api.nvim_set_keymap("n", "<leader>ha", "<cmd>Gitsigns stage_hunk<cr>",
         {silent = true, noremap = true}
       )
-      vim.api.nvim_set_keymap("v", "<leader>hs", "<cmd>Gitsigns stage_hunk<cr>",
+      vim.api.nvim_set_keymap("v", "<leader>ha", "<cmd>Gitsigns stage_hunk<cr>",
         {silent = true, noremap = true}
       )
       vim.api.nvim_set_keymap("n", "<leader>hr", "<cmd>Gitsigns reset_hunk<cr>",
