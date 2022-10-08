@@ -174,6 +174,12 @@ return require('packer').startup(function()
       require('telescope').load_extension('fzf')
       builtin = require('telescope.builtin')
 
+      -- yanky.nvim integration.
+      require("telescope").load_extension("yank_history")
+      vim.api.nvim_set_keymap("n", "<leader>fp", "<cmd>Telescope yank_history<cr>",
+        {silent = true, noremap = true}
+      )
+
       vim.api.nvim_set_keymap('n', '<leader>ff', "", {noremap = true, callback = builtin.find_files})
       vim.api.nvim_set_keymap('n', '<leader>fg', "", {noremap = true, callback = builtin.live_grep})
       vim.api.nvim_set_keymap('n', '<leader>fb', "", {noremap = true, callback = builtin.current_buffer_fuzzy_find})
@@ -316,6 +322,24 @@ return require('packer').startup(function()
           update_n_lines = '<leader>sn', -- Update `n_lines`
         },
       })
+    end
+  }
+
+  use {
+    "gbprod/yanky.nvim",
+    requires = { "kkharji/sqlite.lua" },
+    config = function()
+      require("yanky").setup({})
+      vim.api.nvim_set_keymap("n", "p", "<Plug>(YankyPutAfter)", {})
+      vim.api.nvim_set_keymap("x", "p", "<Plug>(YankyPutAfter)", {})
+      vim.api.nvim_set_keymap("n", "P", "<Plug>(YankyPutBefore)", {})
+      vim.api.nvim_set_keymap("x", "P", "<Plug>(YankyPutBefore)", {})
+      vim.api.nvim_set_keymap("n", "gp", "<Plug>(YankyGPutAfter)", {})
+      vim.api.nvim_set_keymap("x", "gp", "<Plug>(YankyGPutAfter)", {})
+      vim.api.nvim_set_keymap("n", "gP", "<Plug>(YankyGPutBefore)", {})
+      vim.api.nvim_set_keymap("x", "gP", "<Plug>(YankyGPutBefore)", {})
+      vim.api.nvim_set_keymap("n", "<c-n>", "<Plug>(YankyCycleForward)", {})
+      vim.api.nvim_set_keymap("n", "<c-p>", "<Plug>(YankyCycleBackward)", {})
     end
   }
 
