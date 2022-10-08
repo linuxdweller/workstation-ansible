@@ -1,5 +1,8 @@
 require('plugins')
 
+-- Disable mouse mode.
+vim.opt.mouse = null
+
 -- Use normal clipboard.
 vim.opt.clipboard = 'unnamedplus'
 -- Display line numbers.
