@@ -10,6 +10,12 @@
   changed_when: false
   register: k3d
 
+- name: jmespath is installed for json_query function
+  become: true
+  ansible.builtin.pip:
+    name: jmespath
+    state: latest
+
 - name: Set facts
   ansible.builtin.set_fact:
     is_latest_k3d: "{{ not not ((not k3d.failed) and (k3d.stdout | regex_search(latest_release.json | community.general.json_query(\"tag_name\")))) }}"
