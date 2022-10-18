@@ -4,9 +4,7 @@ return require('packer').startup(function()
   use {
     'neovim/nvim-lspconfig',
     config = function()
-      local capabilities = require('cmp_nvim_lsp').update_capabilities(
-        vim.lsp.protocol.make_client_capabilities()
-      )
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local lspconfig = require('lspconfig')
       local servers = { 'tsserver', 'gopls', 'pyright', 'dockerls', 'terraformls' }
       for _, lsp in pairs(servers) do
