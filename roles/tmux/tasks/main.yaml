@@ -17,5 +17,5 @@
 
 - name: Config is present
   ansible.builtin.copy:
-    src: .tmux.conf
+    src: tmux.conf
     dest: ~/.tmux.conf
