@@ -19,3 +19,9 @@
   ansible.builtin.copy:
     src: tmux.conf
     dest: ~/.tmux.conf
+
+- name: tmuxp is present
+  become: true
+  ansible.builtin.pip:
+    name: tmuxp
+    state: latest
