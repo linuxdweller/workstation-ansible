@@ -299,12 +299,7 @@ return require('packer').startup(function()
       require('mini.cursorword').setup({
         delay = 0
       })
-      require('mini.pairs').setup({
-        mappings = {
-          ['<'] = { action = 'open', pair = '<>', neigh_pattern = '[^\\].'},
-          ['>'] = { action = 'close', pair = '<>', neigh_pattern = '[^\\].'}
-        }
-      })
+      require('mini.pairs').setup()
       require('mini.surround').setup({
         mappings = {
           add = '<leader>sa', -- Add surrounding
