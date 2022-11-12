@@ -6,16 +6,12 @@ return require('packer').startup(function()
     config = function()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local lspconfig = require('lspconfig')
-      local servers = { 'tsserver', 'gopls', 'pyright', 'dockerls', 'terraformls' }
+      local servers = { 'tsserver', 'gopls', 'pyright', 'dockerls', 'terraformls', 'emmet_ls' }
       for _, lsp in pairs(servers) do
         lspconfig[lsp].setup {
           capabilities = capabilities
         }
       end
-      lspconfig.emmet_ls.setup({
-        capabilities = capabilities,
-        filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' }
-      })
       local yamlConfig = require('yaml-companion').setup()
       lspconfig.yamlls.setup(yamlConfig)
     end
