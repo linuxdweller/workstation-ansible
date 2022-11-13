@@ -6,7 +6,7 @@ return require('packer').startup(function()
     config = function()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local lspconfig = require('lspconfig')
-      local servers = { 'tsserver', 'gopls', 'pyright', 'dockerls', 'terraformls', 'emmet_ls' }
+      local servers = { 'tsserver', 'gopls', 'pyright', 'dockerls', 'terraformls', 'emmet_ls', 'clangd' }
       for _, lsp in pairs(servers) do
         lspconfig[lsp].setup {
           capabilities = capabilities
