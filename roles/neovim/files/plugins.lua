@@ -94,12 +94,6 @@ return require('packer').startup(function()
     requires = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
       require('go').setup()
-      local go_format = require("go.format")
-      -- Run gofmt + goimport on save.
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        pattern = '*.go',
-        callback = go_format.goimport
-      })
     end
   }
 
@@ -227,6 +221,17 @@ return require('packer').startup(function()
           null_ls.builtins.formatting.prettier,
           null_ls.builtins.formatting.stylelint
         }
+      })
+      -- Format files on save.
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        pattern = '*.go,*.py,*.[jt]s,*.[jt]sx,*.css,*.s[ac]ss,*.json,*.yaml,*.yml,*.md',
+        callback = function()
+          vim.lsp.buf.format({
+            filter = function(client)
+              return client.name == 'null-ls'
+            end
+          })
+        end
       })
     end
   }
