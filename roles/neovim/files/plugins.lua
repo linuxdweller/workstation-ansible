@@ -218,13 +218,15 @@ return require('packer').startup(function()
           null_ls.builtins.formatting.eslint,
           null_ls.builtins.formatting.gofmt,
           null_ls.builtins.formatting.goimports,
+          null_ls.builtins.formatting.packer,
           null_ls.builtins.formatting.prettier,
-          null_ls.builtins.formatting.stylelint
+          null_ls.builtins.formatting.stylelint,
+          null_ls.builtins.formatting.terraform_fmt
         }
       })
       -- Format files on save.
       vim.api.nvim_create_autocmd('BufWritePre', {
-        pattern = '*.go,*.py,*.[jt]s,*.[jt]sx,*.css,*.s[ac]ss,*.json,*.yaml,*.yml,*.md',
+        pattern = '*.go,*.py,*.[jt]s,*.[jt]sx,*.css,*.s[ac]ss,*.json,*.yaml,*.yml,*.md,*.tf,*.hcl',
         callback = function()
           vim.lsp.buf.format({
             filter = function(client)
