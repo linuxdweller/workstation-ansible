@@ -6,7 +6,7 @@ return require('packer').startup(function()
     config = function()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local lspconfig = require('lspconfig')
-      local servers = { 'tsserver', 'gopls', 'pyright', 'dockerls', 'terraformls', 'emmet_ls', 'clangd' }
+      local servers = { 'tsserver', 'gopls', 'pyright', 'dockerls', 'terraformls', 'emmet_ls', 'clangd', 'ocamllsp' }
       for _, lsp in pairs(servers) do
         lspconfig[lsp].setup {
           capabilities = capabilities
@@ -242,7 +242,7 @@ return require('packer').startup(function()
     "nvim-treesitter/nvim-treesitter",
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "lua", "dockerfile", "go", "hcl", "html", "javascript", "json", "python", "scss", "toml", "typescript", "tsx", "yaml", "org" },
+        ensure_installed = { "lua", "dockerfile", "go", "hcl", "html", "javascript", "json", "python", "scss", "toml", "typescript", "tsx", "yaml", "org", "ocaml" },
         highlight = {
           enable = true,
           additional_vim_regex_highlighting = { "org" }
