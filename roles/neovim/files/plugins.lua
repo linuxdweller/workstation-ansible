@@ -361,12 +361,4 @@ return require('packer').startup(function()
       require('leap').set_default_keymaps()
     end
   }
-
-  -- Smooth scrolling.
-  use {
-    'declancm/cinnamon.nvim',
-    config = function()
-      require('cinnamon').setup()
-    end
-  }
 end)
