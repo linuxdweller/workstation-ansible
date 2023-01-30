@@ -40,7 +40,6 @@
   ansible.builtin.copy:
     src: init.lua
     dest: ~/.config/nvim/init.lua
-    backup: yes
     mode: u=rw,go=rgo=r
 
 - name: Lua folder is present
@@ -52,7 +51,6 @@
   ansible.builtin.copy:
     src: plugins.lua
     dest: ~/.config/nvim/lua/plugins.lua
-    backup: yes
     mode: u=rw,go=r
 
 - name: Node is present for installing language servers with npm
