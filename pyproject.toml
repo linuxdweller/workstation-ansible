@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "workstation-ansible"
+version = "1.0.0"
+description = ""
+authors = ["Lior Kummer"]
+readme = "README.md"
+packages = [{include = "workstation_ansible"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.group.dev.dependencies]
+ansible-core = "^2.14.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
