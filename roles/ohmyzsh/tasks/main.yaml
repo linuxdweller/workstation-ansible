@@ -59,11 +59,3 @@
     src: minima.zsh-theme
     dest: ~/.oh-my-zsh/custom/themes/minima.zsh-theme
     mode: u=rw,go=r
-
-- name: install Node with nvm
-  ansible.builtin.shell:
-    executable: /usr/bin/zsh
-    # nvm requires sourcing the zsh configuration for running.
-    cmd: source ~/.zshrc && nvm install --lts
-  register: nvm_install_lts
-  changed_when: '"is already installed" not in nvm_install_lts.stderr'
