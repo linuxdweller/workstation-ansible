@@ -34,3 +34,21 @@
     name: tag.gpgSign
     value: 'true'
     scope: global
+
+- name: Git is configured to run global hooks
+  community.general.git_config:
+    name: core.hooksPath
+    value: ~/.git-hooks
+    scope: global
+
+- name: Folder for global hooks is present
+  ansible.builtin.file:
+    path: ~/.git-hooks
+    state: directory
+    mode: '1755'
+
+- name: Pre commit hook is copied
+  ansible.builtin.copy:
+    src: pre-commit
+    dest: ~/.git-hooks/pre-commit
+    mode: '1755'
