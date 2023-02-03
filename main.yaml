@@ -2,8 +2,11 @@
 - hosts: localhost
   roles:
     - role: ohmyzsh
+      vars:
+        ohmyzsh_use_bitwarden_ssh_key_storage: true
     - role: tmux
     - role: neovim
+    - role: git
     - role: hashicorp
     - role: kubectl
     - role: helm

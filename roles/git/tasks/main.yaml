@@ -1,0 +1,36 @@
+---
+- name: Git name is set
+  community.general.git_config:
+    name: user.name
+    value: '{{ git_user }}'
+    scope: global
+
+- name: Git email is set
+  community.general.git_config:
+    name: user.email
+    value: '{{ git_email }}'
+    scope: global
+
+- name: Git email is set
+  community.general.git_config:
+    name: user.signingKey
+    value: '{{ git_signing_key }}'
+    scope: global
+
+- name: Git is configured to sign with SSH
+  community.general.git_config:
+    name: gpg.format
+    value: ssh
+    scope: global
+
+- name: Git is configured to sign commits
+  community.general.git_config:
+    name: commit.gpgSign
+    value: 'true'
+    scope: global
+
+- name: Git is configured to sign tags
+  community.general.git_config:
+    name: tag.gpgSign
+    value: 'true'
+    scope: global

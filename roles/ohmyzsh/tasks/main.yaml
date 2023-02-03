@@ -44,6 +44,14 @@
     name: poetry
     state: latest
 
+- name: Bitwarden CLI is installed for SSH key management
+  become: true
+  community.general.npm:
+    name: '@bitwarden/cli'
+    state: latest
+    global: true
+  when: 'ohmyzsh_use_bitwarden_ssh_key_storage'
+
 - name: is_wsl fact is set
   ansible.builtin.set_fact:
     is_wsl: "{{ not not (ansible_kernel | regex_search('microsoft')) }}"

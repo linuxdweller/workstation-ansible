@@ -143,3 +143,8 @@ export COLORTERM
 
 # Additional aliases.
 alias grao='git remote add origin'
+
+{% if ohmyzsh_use_bitwarden_ssh_key_storage %}
+alias unseal='eval "$(ssh-agent -s)" && bw get notes '{{ ohmyzsh_bitwarden_ssh_key_note_id }}' | ssh-add key -'
+alias seal='eval "$(ssh-agent -k)"'
+{% endif %}
