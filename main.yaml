@@ -1,6 +1,7 @@
 ---
 - hosts: localhost
   roles:
+    - role: group_distributions
     - role: ohmyzsh
       vars:
         ohmyzsh_use_bitwarden_ssh_key_storage: true

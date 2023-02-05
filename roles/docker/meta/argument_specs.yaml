@@ -1,0 +1,14 @@
+---
+argument_specs:
+  main:
+    short_description: >
+      Configure Docker and Docker Compose.
+    options:
+      docker_apt_key_url:
+        type: str
+        required: true
+        description: GPG signature URL for Docker apt repository.
+      docker_apt_repository:
+        type: str
+        required: true
+        description: Repository string of Docker apt repository.

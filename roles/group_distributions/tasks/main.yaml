@@ -1,0 +1,13 @@
+---
+- name: Set distribution related facts
+  ansible.builtin.set_fact:
+    os_release: '{{ ansible_facts["distribution"] | lower }}-{{ ansible_facts["distribution_release"] }}'
+    is_wsl: '"microsoft" in ansible_facts["kernel"]'
+
+- name: Assert a supported distribution release is used
+  ansible.builtin.assert:
+    that:
+      - os_release in ['ubuntu-jammy', 'debian-bullseye']
+
+- name: Set distribution dependant variables
+  ansible.builtin.include_vars: '{{ os_release }}.yaml'
