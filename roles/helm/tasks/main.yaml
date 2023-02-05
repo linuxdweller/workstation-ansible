@@ -1,13 +1,21 @@
 ---
+- name: Keyrings folder is present
+  become: true
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '1755'
+
 - name: Helm GPG key is present
   become: true
-  ansible.builtin.apt_key:
-    url: https://baltocdn.com/helm/signing.asc
+  ansible.builtin.get_url:
+    url: '{{ helm_apt_key_url }}'
+    dest: /etc/apt/keyrings/helm.asc
 
 - name: Helm package repository is present
   become: true
   ansible.builtin.apt_repository:
-    repo: deb https://baltocdn.com/helm/stable/debian/ all main
+    repo: '{{ helm_apt_repository }}'
 
 - name: Latest Helm is installed
   become: true

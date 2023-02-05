@@ -1,14 +1,21 @@
 ---
+- name: Keyrings folder is present
+  become: true
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '1755'
+
 - name: Kubernetes keyring is present
   become: true
   ansible.builtin.get_url:
-    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-    dest: /usr/share/keyrings/kubernetes-archive-keyring.gpg
+    url: '{{ kubectl_apt_key_url }}'
+    dest: /etc/apt/keyrings/kubernetes.gpg
 
 - name: Kubernetes package repository is present
   become: true
   ansible.builtin.apt_repository:
-    repo: deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main
+    repo: '{{ kubectl_apt_repository }}'
 
 - name: Latest kubectl is installed
   become: true

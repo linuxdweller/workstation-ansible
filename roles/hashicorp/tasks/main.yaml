@@ -1,13 +1,21 @@
 ---
+- name: Keyrings folder is present
+  become: true
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '1755'
+
 - name: Hashicorp GPG key is present
   become: true
-  ansible.builtin.apt_key:
-    url: https://apt.releases.hashicorp.com/gpg
+  ansible.builtin.get_url:
+    url: '{{ hashicorp_apt_key_url }}'
+    dest: /etc/apt/keyrings/hashicorp.asc
 
 - name: Hashicorp package repository is present
   become: true
   ansible.builtin.apt_repository:
-    repo: deb [arch=amd64] https://apt.releases.hashicorp.com focal main
+    repo: '{{ hashicorp_apt_repository }}'
 
 - name: Latest Terraform and Packer are installed
   become: true
