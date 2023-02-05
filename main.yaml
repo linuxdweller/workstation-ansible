@@ -13,47 +13,31 @@
     - role: helm
     - role: docker
       # Do not manage Docker in WSL, as it is managed by Docker Desktop on Windows.
-      when: '"microsoft" not in ansible_facts["kernel"] and ansible_facts["distribution_version"] == "22.04"'
-    - role: k3d
-    # See dynamic role reuse as well.
-    # https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html#including-roles-dynamic-reuse
-    - role: github_archived_binary
-      vars:
+      when: not is_wsl
+  tasks:
+    - name: k3d is present
+      become: true
+      github_release_asset:
+        repo: rancher/k3d
+        asset_pattern: linux-amd64
+    - name: nnn is present
+      become: true
+      github_release_asset:
         repo: jarun/nnn
-        version: v4.4
-        executable_glob: nnn-static
-        asset_regex: nnn-static-.*\.x86_64\.tar\.gz
-        version_command: nnn -V
-        dest: /usr/local/bin/nnn
-    - role: github_archived_binary
-      vars:
+        asset_pattern: nerd-static
+    - name: tilt is present
+      become: true
+      github_release_asset:
         repo: tilt-dev/tilt
-        version: v0.30.4
-        executable_glob: tilt
-        asset_regex: tilt.*linux\.x86_64\.tar\.gz
-        version_command: tilt version
-        dest: /usr/local/bin/tilt
-    - role: github_archived_binary
-      vars:
+        asset_pattern: linux\.x86_64
+    - name: vale is present
+      become: true
+      github_release_asset:
         repo: errata-ai/vale
-        version: v2.19.0
-        executable_glob: vale
-        asset_regex: vale_.*_Linux_64-bit\.tar\.gz
-        version_command: vale --version
-        dest: /usr/local/bin/vale
-    - role: github_archived_binary
-      vars:
+        asset_pattern: Linux_64
+    - name: golangci-lint is present
+      become: true
+      github_release_asset:
         repo: golangci/golangci-lint
-        version: v1.47.2
-        executable_glob: golangci-lint-1.47.2-linux-amd64/golangci-lint
-        asset_regex: golangci-lint-.*-linux-amd64\.tar\.gz
-        version_command: golangci-lint version
-        dest: /usr/local/bin/golangci-lint
-    # - role: github_archived_binary
-    #   vars:
-    #     repo: 'pdfcpu/pdfcpu'
-    #     version: 'v0.3.13'
-    #     executable_glob: '*/pdfcpu'
-    #     asset_regex: 'pdfcpu_.*_Linux_x86_64\.tar\.xz'
-    #     version_command: "/usr/local/bin/pdfcpu version"
-    #     dest: '/usr/local/bin/pdfcpu'
+        asset_pattern: linux-386\.tar\.gz
+    # TODO Add pdfcpu? Need lzma support in github_release_asset module.

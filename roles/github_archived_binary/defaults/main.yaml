@@ -1,7 +1,0 @@
----
-  repo: 'example/example'
-  version: 'v1.0.0'
-  executable_glob: 'example'
-  asset_regex: 'example.*\.tar\.gz'
-  version_command: "/usr/local/bin/example version"
-  dest: '/usr/local/bin'
