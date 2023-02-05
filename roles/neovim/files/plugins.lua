@@ -242,7 +242,7 @@ return require('packer').startup(function()
     "nvim-treesitter/nvim-treesitter",
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "lua", "dockerfile", "go", "hcl", "html", "javascript", "json", "python", "scss", "toml", "typescript", "tsx", "yaml", "org", "ocaml" },
+        ensure_installed = { "lua", "dockerfile", "go", "hcl", "html", "javascript", "json", "python", "scss", "toml", "typescript", "tsx", "yaml", "org", "ocaml", "terraform" },
         highlight = {
           enable = true,
           additional_vim_regex_highlighting = { "org" }
