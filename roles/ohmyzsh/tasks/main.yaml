@@ -52,6 +52,14 @@
     name: poetry
     state: latest
 
+- name: Node is present for installing Bitwarden CLI with npm
+  become: true
+  ansible.builtin.apt:
+    name:
+      - nodejs
+      - npm
+    state: latest
+
 - name: Bitwarden CLI is installed for SSH key management
   become: true
   community.general.npm:
