@@ -14,12 +14,8 @@
     - role: docker
       # Do not manage Docker in WSL, as it is managed by Docker Desktop on Windows.
       when: not is_wsl
+    - role: k3d
   tasks:
-    - name: k3d is present
-      become: true
-      github_release_asset:
-        repo: rancher/k3d
-        asset_pattern: linux-amd64
     - name: nnn is present
       become: true
       github_release_asset:
