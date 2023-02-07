@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: workstation
   roles:
     - role: group_distributions
     - role: ohmyzsh
