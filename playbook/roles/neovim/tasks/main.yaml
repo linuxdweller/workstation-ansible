@@ -32,6 +32,12 @@
     path: ~/.config/nvim
     state: directory
 
+- name: lazy.nvim lockfile is present
+  ansible.builtin.copy:
+    src: lazy-lock.json
+    dest: ~/.config/nvim/lazy-lock.json
+    mode: '0644'
+
 - name: Vimscript config is absent
   ansible.builtin.file:
     path: ~/.config/nvim/init.vim
@@ -41,18 +47,19 @@
   ansible.builtin.copy:
     src: init.lua
     dest: ~/.config/nvim/init.lua
-    mode: u=rw,go=rgo=r
+    mode: '0644'
 
 - name: Lua folder is present
   ansible.builtin.file:
     path: ~/.config/nvim/lua
     state: directory
+    mode: '1755'
 
 - name: plugins.lua is present
   ansible.builtin.copy:
     src: plugins.lua
     dest: ~/.config/nvim/lua/plugins.lua
-    mode: u=rw,go=r
+    mode: '0644'
 
 - name: Node is present for installing language servers with npm
   become: true

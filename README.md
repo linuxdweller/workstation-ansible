@@ -31,7 +31,6 @@ Enter your `sudo` password in the prompt.
 
 After Ansible is done running:
 
-* Open `nvim` and run `:PackerSync`.
 * Open `tmux` and hit `Ctrl-b I`.
 
 The development environment should be all set up.
@@ -40,7 +39,20 @@ The development environment should be all set up.
 
 Quirks you might need to work around.
 
-* To apply NeoVim configuration, run `:PackerSync`.
 * To apply `tmux` configuration, hit `C-b I`.
 * `docker` role does not run on WSL because in WSL Docker is managed by Docker Desktop on Windows.
 * Dependencies for Go and TS completion in NeoVim are not installed. [TS language server installation instructions](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver). Go completion requires `gopls`.as
+
+## Updating NeoVim Plugins
+
+To update NeoVim plugins, use `lazy.nvim` and copy the updated lockfile to the `neovim` role:
+
+```
+cp ~/.config/nvim/lazy-lock.json playbook/roles/neovim/files
+```
+
+Or use `scp` to copy the lockfile from remote machine:
+
+```
+scp stirring-octopus@192.168.0.184:~/.config/nvim/lazy-lock.json playbook/roles/neovim/files
+```
