@@ -57,33 +57,6 @@ return {
     end
   },
   {
-    "gbprod/yanky.nvim",
-    dependencies = {
-      "kkharji/sqlite.lua",
-      "nvim-telescope/telescope.nvim"
-    },
-    config = function()
-      require("yanky").setup({})
-
-      -- Telescope integration.
-      require("telescope").load_extension("yank_history")
-      vim.api.nvim_set_keymap("n", "<leader>fp", "<cmd>Telescope yank_history<cr>",
-        {silent = true, noremap = true}
-      )
-
-      vim.api.nvim_set_keymap("n", "p", "<Plug>(YankyPutAfter)", {})
-      vim.api.nvim_set_keymap("x", "p", "<Plug>(YankyPutAfter)", {})
-      vim.api.nvim_set_keymap("n", "P", "<Plug>(YankyPutBefore)", {})
-      vim.api.nvim_set_keymap("x", "P", "<Plug>(YankyPutBefore)", {})
-      vim.api.nvim_set_keymap("n", "gp", "<Plug>(YankyGPutAfter)", {})
-      vim.api.nvim_set_keymap("x", "gp", "<Plug>(YankyGPutAfter)", {})
-      vim.api.nvim_set_keymap("n", "gP", "<Plug>(YankyGPutBefore)", {})
-      vim.api.nvim_set_keymap("x", "gP", "<Plug>(YankyGPutBefore)", {})
-      vim.api.nvim_set_keymap("n", "<c-n>", "<Plug>(YankyCycleForward)", {})
-      vim.api.nvim_set_keymap("n", "<c-p>", "<Plug>(YankyCycleBackward)", {})
-    end
-  },
-  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
@@ -118,8 +91,7 @@ return {
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp"},
-          { name = "vsnip" },
-          { name = "orgmode" }
+          { name = "vsnip" }
         }, {
           { name = "buffer" }
         })
@@ -169,20 +141,6 @@ return {
           additional_vim_regex_highlighting = { "org" }
         }
       })
-    end
-  },
-  {
-    "nvim-orgmode/orgmode",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter"
-    },
-    config = function()
-      orgmode = require("orgmode")
-      orgmode.setup({
-        org_agenda_files = {"~/org/**/*"},
-        org_default_notes_file = "~/org/refile.org"
-      })
-      orgmode.setup_ts_grammar()
     end
   },
   {
