@@ -152,7 +152,7 @@ return {
   },
   {
     "ray-x/go.nvim",
-    requires = {
+    dependencies = {
       "nvim-treesitter/nvim-treesitter"
     },
     config = function()
