@@ -126,22 +126,34 @@ return {
     "ray-x/go.nvim",
     dependencies = {
       "nvim-treesitter/nvim-treesitter"
-    },
-    config = function()
-      require("go").setup()
-    end
+    }
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = { "lua", "dockerfile", "go", "hcl", "html", "javascript", "json", "python", "scss", "toml", "typescript", "tsx", "yaml", "org", "ocaml", "terraform" },
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = { "org" }
-        }
-      })
-    end
+    opts = {
+      ensure_installed = {
+        "lua",
+        "dockerfile",
+        "go",
+        "hcl",
+        "html",
+        "javascript",
+        "json",
+        "python",
+        "scss",
+        "toml",
+        "typescript",
+        "tsx",
+        "yaml",
+        "org",
+        "ocaml",
+        "terraform"
+      },
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = { "org" }
+      }
+    }
   },
   {
     "catppuccin/nvim",
@@ -249,18 +261,16 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     tag = "v2.18.4",
-    config = function()
-      require("indent_blankline").setup({
-        char = "▏",
-        show_current_context = true
-      })
-    end
+    opts = {
+      char = "▏",
+      show_current_context = true
+    }
   },
-  "tpope/vim-sleuth",
   {
     "ggandor/leap.nvim",
     config = function()
       require("leap").set_default_keymaps()
     end
-  }
+  },
+  "tpope/vim-sleuth"
 }
