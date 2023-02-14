@@ -8,7 +8,7 @@ return {
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
-      local servers = { "tsserver", "gopls", "pyright", "dockerls", "terraformls", "emmet_ls", "clangd", "ocamllsp" }
+      local servers = { "tsserver", "gopls", "pyright", "dockerls", "terraformls", "emmet_ls" }
       for _, lsp in pairs(servers) do
         lspconfig[lsp].setup {
           capabilities = capabilities
@@ -132,22 +132,28 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
-        "lua",
+        "bash",
+        "c",
+        "cmake",
+        "cpp",
+        "css",
         "dockerfile",
         "go",
         "hcl",
         "html",
         "javascript",
         "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
         "python",
         "scss",
+        "sql",
+        "terraform",
         "toml",
-        "typescript",
         "tsx",
+        "typescript",
         "yaml",
-        "org",
-        "ocaml",
-        "terraform"
       },
       highlight = {
         enable = true,
@@ -254,7 +260,7 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    tag = "v2.18.4",
+    version = "*",
     opts = {
       char = "▏",
       show_current_context = true
