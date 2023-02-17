@@ -99,6 +99,20 @@
     global: true
     state: latest
 
+- name: Tailwind language server is installed
+  become: true
+  community.general.npm:
+    name: '@tailwindcss/language-server'
+    global: true
+    state: latest
+
+- name: Ansible language server is installed
+  become: true
+  community.general.npm:
+    name: '@ansible/ansible-language-server'
+    global: true
+    state: latest
+
 - name: Python development tools are present
   become: true
   ansible.builtin.pip:
