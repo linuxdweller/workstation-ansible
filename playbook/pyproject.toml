@@ -9,6 +9,7 @@ packages = [{include = "workstation_ansible"}]
 [tool.poetry.dependencies]
 python = "^3.9"
 requests = "^2.28.2"
+jmespath = "^1.0.1"
 
 [tool.poetry.group.dev.dependencies]
 ansible-core = "^2.14.2"
