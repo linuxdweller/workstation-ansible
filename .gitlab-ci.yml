@@ -38,12 +38,12 @@ deploy:
     - terraform init -input=false
     - terraform apply -auto-approve -input=false
     - chmod 600 ${PROVISIONING_SSH_PRIVATE_KEY}
-    - pip install poetry==1.3.2
-    - poetry install --no-root --all-extras
-    - ansible-playbook --key-file ${PROVISIONING_SSH_PRIVATE_KEY} --inventory inventory main.yaml
     - apt install jq --yes
     - terraform show -json | jq '.values.outputs' > outputs.json
     - cd ${ANSIBLE_ROOT}
+    - pip install poetry==1.3.2
+    - poetry install --no-root --all-extras
+    - ansible-playbook --key-file ${PROVISIONING_SSH_PRIVATE_KEY} --inventory inventory main.yaml
   artifacts:
     when: always
     paths:
