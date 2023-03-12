@@ -29,10 +29,6 @@ deploy:
     TF_HTTP_USERNAME: gitlab-ci-token
     TF_HTTP_PASSWORD: ${CI_JOB_TOKEN}
     TF_HTTP_RETRY_WAIT_MIN: 5
-    ANSIBLE_STDOUT_CALLBACK: junit
-    JUNIT_OUTPUT_DIR: results
-    # Maybe should hide Ansible task arguments from reports in the future?
-    # JUNIT_HIDE_TASK_ARGUMENTS: 'true'
   script:
     - cd ${TF_ROOT}
     - terraform init -input=false
@@ -44,15 +40,12 @@ deploy:
     - pip install poetry==1.3.2
     - poetry install --no-root --all-extras
     - poetry run ansible-galaxy install -r requirements.yaml
-    - poetry run ansible-playbook --key-file ${PROVISIONING_SSH_PRIVATE_KEY} --inventory inventory -vvv main.yaml
+    - poetry run ansible-playbook --key-file ${PROVISIONING_SSH_PRIVATE_KEY} --inventory inventory main.yaml
   artifacts:
     when: always
     paths:
       - terraform/outputs.json
     expire_in: '30 days'
-    reports:
-      junit:
-        - ${ANSIBLE_ROOT}/results/*.xml
 
 destroy:
   rules:
