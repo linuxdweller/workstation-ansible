@@ -1,3 +1,8 @@
+output "proxmox_id" {
+  value       = module.workstation.id
+  description = "Proxmox ID of the created machine."
+}
+
 output "ssh_ip" {
   value       = module.workstation.ssh_ip
   description = "IP of the created virtual machine."
