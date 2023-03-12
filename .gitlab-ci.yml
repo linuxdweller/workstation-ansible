@@ -43,7 +43,8 @@ deploy:
     - cd ${ANSIBLE_ROOT}
     - pip install poetry==1.3.2
     - poetry install --no-root --all-extras
-    - ansible-playbook --key-file ${PROVISIONING_SSH_PRIVATE_KEY} --inventory inventory main.yaml
+    - poetry run ansible-galaxy install -r requirements.yml
+    - poetry run ansible-playbook --key-file ${PROVISIONING_SSH_PRIVATE_KEY} --inventory inventory main.yaml
   artifacts:
     when: always
     paths:
