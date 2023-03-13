@@ -23,9 +23,9 @@ response = post(
     json={
         "pipeline_id": pipeline_id,
         "token": callback_token,
-        "proxmox_id": state["outputs"]["proxmox_id"]["value"],
-        "ssh_ip": state["outputs"]["ssh_ip"]["value"],
-        "ssh_user": state["outputs"]["ssh_user"]["value"],
+        "proxmox_id": state["values"]["outputs"]["proxmox_id"]["value"],
+        "ssh_ip": state["values"]["outputs"]["ssh_ip"]["value"],
+        "ssh_user": state["values"]["outputs"]["ssh_user"]["value"],
     },
     timeout=30,
 )
