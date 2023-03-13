@@ -39,6 +39,7 @@ deploy:
     - poetry install --no-root --all-extras
     - poetry run ansible-galaxy install -r requirements.yaml
     - poetry run ansible-playbook --key-file ${PROVISIONING_SSH_PRIVATE_KEY} --inventory inventory main.yaml
+    - cd ${TF_ROOT}
     - terraform show -json | poetry run python ../machine-ready.py
   artifacts:
     when: always
