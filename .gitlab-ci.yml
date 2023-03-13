@@ -42,11 +42,6 @@ deploy:
     - ansible-playbook --key-file ${PROVISIONING_SSH_PRIVATE_KEY} --inventory inventory main.yaml
     - cd ${TF_ROOT}
     - terraform show -json | python ../machine-ready.py
-  artifacts:
-    when: always
-    paths:
-      - terraform/outputs.json
-    expire_in: '30 days'
 
 destroy:
   rules:
