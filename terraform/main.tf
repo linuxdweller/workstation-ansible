@@ -2,6 +2,8 @@ terraform {
   required_version = ">= 1.1"
 }
 
+resource "random_uuid" "machine_name" {}
+
 module "workstation" {
   source = "github.com/LKummer/terraform-proxmox//modules/machine?ref=2.0.1"
 
@@ -9,7 +11,7 @@ module "workstation" {
   proxmox_target_node = var.proxmox_target_node
   proxmox_template    = "debian-11.6.0-1"
 
-  name                   = "lior-workstation"
+  name                   = "workstation-${random_uuid.machine_name.result}"
   description            = "Dynamically cloned workstation."
   on_boot                = true
   memory                 = 4096
