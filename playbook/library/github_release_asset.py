@@ -84,6 +84,7 @@ def fetch_and_extract(url: str, executable_name: str):
             if executable:
                 with executable_path.open("wb") as executable_file:
                     executable_file.write(executable.read())
+                executable_path.chmod(0o755)
 
 
 def remove_executable(executable_name: str) -> bool:
