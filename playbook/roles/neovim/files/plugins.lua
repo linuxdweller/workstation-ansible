@@ -17,7 +17,8 @@ return {
         "tailwindcss",
         "terraformls",
         "tilt_ls",
-        "tsserver"
+        "tsserver",
+        "clangd"
       }
       for _, lsp in pairs(servers) do
         lspconfig[lsp].setup {

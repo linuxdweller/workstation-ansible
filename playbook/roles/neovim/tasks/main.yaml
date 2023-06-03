@@ -130,3 +130,12 @@
       - ripgrep
       - fd-find
     state: latest
+
+- name: Clang and Clangd language server are installed
+  become: true
+  ansible.builtin.apt:
+    name:
+      - clang
+      - clangd
+      - bear
+    state: latest
