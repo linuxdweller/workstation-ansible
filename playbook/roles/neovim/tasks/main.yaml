@@ -1,25 +1,38 @@
 ---
+- name: Removed NeoVim Debian package is absent
+  become: true
+  ansible.builtin.apt:
+    name: neovim
+    state: absent
+
 - name: Get NeoVim version
   ansible.builtin.command: nvim --version
   ignore_errors: true
   changed_when: false
   register: neovim_version_check
 
+- name: Install FUSE appimage dependency
+  become: true
+  ansible.builtin.apt:
+    name: libfuse2
+    state: latest
+
 - name: Set is_neovim_present fact
   ansible.builtin.set_fact:
     is_neovim_present: '{{ not neovim_version_check.failed and neovim_version_check.stdout | regex_search(neovim_version | regex_escape()) }}'
 
-- name: Download NeoVim Debian package
+- name: Download NeoVim appimage
   ansible.builtin.get_url:
-    url: https://github.com/neovim/neovim/releases/download/{{ neovim_version }}/nvim-linux64.deb
-    dest: /tmp/neovim.deb
+    url: https://github.com/neovim/neovim/releases/download/{{ neovim_version }}/nvim.appimage
+    dest: /tmp/neovim.appimage
   when: not is_neovim_present
 
-- name: Install NeoVim Debian package
+- name: Install NeoVim appimage by copying it
   become: true
-  ansible.builtin.apt:
-    deb: /tmp/neovim.deb
-  when: not is_neovim_present
+  ansible.builtin.copy:
+    src: /tmp/neovim.appimage
+    dest: /usr/local/bin/nvim
+    mode: '0755'
 
 - name: lazy.nvim repository is cloned
   ansible.builtin.git:
