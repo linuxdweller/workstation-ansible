@@ -1,7 +1,7 @@
 ---
 collections:
   - name: community.general
-    version: 6.3.0
+    version: 7.2.1
   - name: lkummer.homelab
     type: git
     source: https://github.com/LKummer/ansible-collection-homelab.git
