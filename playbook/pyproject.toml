@@ -4,7 +4,7 @@ version = "1.0.0"
 description = ""
 authors = ["Lior Kummer"]
 readme = "README.md"
-packages = [{include = "workstation_ansible"}]
+packages = []
 
 [tool.poetry.dependencies]
 python = "^3.9"
