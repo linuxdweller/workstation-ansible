@@ -17,19 +17,12 @@
   ansible.builtin.apt_repository:
     repo: '{{ hashicorp_apt_repository }}'
 
-- name: Latest Terraform and Packer are installed
+- name: Latest Terraform, Packer, and language server are installed
   become: true
   ansible.builtin.apt:
     name:
       - terraform
       - packer
-    state: latest
-    update_cache: yes
-
-- name: Latest Language Server is installed for NeoVim
-  become: true
-  ansible.builtin.apt:
-    name:
       - terraform-ls
     state: latest
     update_cache: yes
