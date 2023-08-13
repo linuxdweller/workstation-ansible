@@ -14,7 +14,9 @@
 - name: Install FUSE appimage dependency
   become: true
   ansible.builtin.apt:
-    name: libfuse2
+    name:
+      - libfuse2
+      - fuse3
     state: latest
 
 - name: Set is_neovim_present fact
@@ -135,6 +137,7 @@
       - mypy
       - pylint
       - black
+    extra_args: --break-system-packages
     state: latest
 
 - name: search tools are installed

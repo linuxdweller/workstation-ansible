@@ -14,6 +14,7 @@
   become: true
   ansible.builtin.pip:
     name: jmespath
+    extra_args: --break-system-packages
     state: latest
 
 - name: Set facts
