@@ -1,0 +1,29 @@
+---
+- name: Get installed version
+  ansible.builtin.command: /usr/local/go/bin/go version
+  ignore_errors: true
+  changed_when: false
+  register: go_current_version
+
+- name: Check go version
+  ansible.builtin.set_fact:
+    go_installed: "{{ (not go_current_version.failed) and go_version in go_current_version.stdout }}"
+
+- name: No existing Go installed
+  become: true
+  ansible.builtin.file:
+    path: /usr/local/go
+    state: absent
+  when: not go_installed
+
+- name: Download Go
+  become: true
+  ansible.builtin.unarchive:
+    src: "https://go.dev/dl/go{{ go_version }}.linux-amd64.tar.gz"
+    remote_src: true
+    dest: /usr/local
+  when: not go_installed
+
+- name: Set go_installed fact
+  ansible.builtin.set_fact:
+    go_installed: true

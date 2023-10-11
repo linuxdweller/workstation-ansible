@@ -8,6 +8,7 @@
     - role: tmux
     - role: neovim
     - role: git
+    - role: go
     - role: hashicorp
     - role: kubectl
     - role: helm
