@@ -36,6 +36,7 @@
     remote_src: true
     dest: /usr/local/bin/nvim
     mode: '0755'
+  when: not is_neovim_present
 
 - name: lazy.nvim repository is cloned
   ansible.builtin.git:

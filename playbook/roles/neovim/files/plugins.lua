@@ -272,9 +272,11 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     version = "*",
+    main = "ibl",
     opts = {
-      char = "▏",
-      show_current_context = true
+      indent = {
+        char = "▏"
+      }
     }
   },
   {
