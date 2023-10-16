@@ -43,7 +43,6 @@
     repo: https://github.com/folke/lazy.nvim
     dest: ~/.local/share/nvim/lazy/lazy.nvim
     version: stable
-    force: true
 
 - name: NeoVim config directory is present
   ansible.builtin.file:
