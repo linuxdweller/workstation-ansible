@@ -6,7 +6,6 @@
     state: directory
     mode: '1755'
 
-
 - name: Kubernetes keyring is present
   become: true
   ansible.builtin.get_url:
