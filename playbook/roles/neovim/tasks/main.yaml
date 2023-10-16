@@ -138,7 +138,7 @@
       - mypy
       - pylint
       - black
-    extra_args: --break-system-packages
+    extra_args: "{{ '--break-system-packages' if 'debian-bookworm' == os_release else ''}}"
     state: latest
 
 - name: search tools are installed

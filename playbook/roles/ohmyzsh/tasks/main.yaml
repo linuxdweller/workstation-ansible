@@ -50,7 +50,7 @@
   become: true
   ansible.builtin.pip:
     name: poetry
-    extra_args: --break-system-packages
+    extra_args: "{{ '--break-system-packages' if 'debian-bookworm' == os_release else ''}}"
     state: latest
 
 - name: Node is present for installing Bitwarden CLI with npm

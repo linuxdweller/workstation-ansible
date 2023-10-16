@@ -14,7 +14,7 @@
   become: true
   ansible.builtin.pip:
     name: jmespath
-    extra_args: --break-system-packages
+    extra_args: "{{ '--break-system-packages' if 'debian-bookworm' == os_release else ''}}"
     state: latest
 
 - name: Set facts
