@@ -26,9 +26,12 @@ def check_version(version_command: list[str], expected_version: str) -> bool:
 
 
 def is_expected_version(executable_name: str, expected_version: str) -> bool:
-    return check_version(
-        [executable_name, "version"], expected_version
-    ) or check_version([executable_name, "--version"], expected_version)
+    return (
+        check_version([executable_name, "--version"], expected_version)
+        or check_version([executable_name, "-v"], expected_version)
+        or check_version([executable_name, "-V"], expected_version)
+        or check_version([executable_name, "version"], expected_version)
+    )
 
 
 def fetch_release(repository: str, version: Optional[str] = None):
