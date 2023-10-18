@@ -30,19 +30,6 @@ return {
     end
   },
   {
-    "someone-stole-my-name/yaml-companion.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
-    },
-    config = function()
-      require("telescope").load_extension("yaml_schema")
-      vim.api.nvim_set_keymap("n", "<leader>fy", "<cmd>Telescope yaml_schema<cr>",
-        {silent = true, noremap = true}
-      )
-    end
-  },
-  {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -197,8 +184,6 @@ return {
           null_ls.builtins.diagnostics.mypy,
           null_ls.builtins.diagnostics.pylint,
           null_ls.builtins.diagnostics.stylelint,
-          -- Is it actually needed with TSServer?
-          -- null_ls.builtins.diagnostics.tsc,
           null_ls.builtins.formatting.black,
           null_ls.builtins.formatting.eslint,
           null_ls.builtins.formatting.gofmt,
