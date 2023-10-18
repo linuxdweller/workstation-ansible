@@ -40,9 +40,10 @@
 
 - name: lazy.nvim repository is cloned
   ansible.builtin.git:
-    repo: https://github.com/folke/lazy.nvim
+    repo: https://github.com/folke/lazy.nvim.git
     dest: ~/.local/share/nvim/lazy/lazy.nvim
     version: stable
+    force: true
 
 - name: NeoVim config directory is present
   ansible.builtin.file:
