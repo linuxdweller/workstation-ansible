@@ -20,9 +20,13 @@
     src: tmux.conf
     dest: ~/.tmux.conf
 
-- name: tmuxp is present
+- name: Old tmuxp is not installed
   become: true
   ansible.builtin.pip:
     name: tmuxp
-    extra_args: "{{ '--break-system-packages' if 'debian-bookworm' == os_release else ''}}"
+    state: absent
+
+- name: tmuxp is present
+  community.general.pipx:
+    name: tmuxp
     state: latest

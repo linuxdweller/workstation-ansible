@@ -1,11 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-{% if is_wsl %}
-# Fix binareis from pip not being on PATH in WSL.
-export PATH=$PATH:~/.local/bin/
-{% endif %}
-
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -135,7 +130,17 @@ export GPG_TTY=$(tty)
 
 # Add Golang binaries to path.
 path+=('/usr/local/go/bin')
-path+=('/home/lior/go/bin')
+path+=('~/go/bin')
+
+# Add pipx binaries to path.
+path+=('~/.local/bin')
+
+{% if is_wsl %}
+# Fix binareis from pip not being on PATH in WSL.
+export PATH=$PATH:~/.local/bin/
+path+=('~/.local/bin')
+{% endif %}
+
 export path
 
 COLORTERM='truecolor'

@@ -130,7 +130,7 @@
     global: true
     state: latest
 
-- name: Python development tools are present
+- name: Old Python development tool installations are absent
   become: true
   ansible.builtin.pip:
     name:
@@ -138,7 +138,26 @@
       - mypy
       - pylint
       - black
-    extra_args: "{{ '--break-system-packages' if 'debian-bookworm' == os_release else ''}}"
+    state: absent
+
+- name: Pyright is installed
+  community.general.pipx:
+    name: pyright
+    state: latest
+
+- name: Mypy is installed
+  community.general.pipx:
+    name: mypy
+    state: latest
+
+- name: Pylint is installed
+  community.general.pipx:
+    name: pylint
+    state: latest
+
+- name: Black is installed
+  community.general.pipx:
+    name: black
     state: latest
 
 - name: search tools are installed

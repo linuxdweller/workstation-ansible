@@ -46,11 +46,21 @@
   ansible.builtin.apt:
     name: python3-pip
 
-- name: Poetry is installed for Zsh plugin
+- name: pipx is installed for Poetry download
+  ansible.builtin.pip:
+    name: pipx
+    extra_args: "{{ '--break-system-packages' if 'debian-bookworm' == os_release else ''}}"
+    state: latest
+
+- name: Remove old Poetry installation
   become: true
   ansible.builtin.pip:
     name: poetry
-    extra_args: "{{ '--break-system-packages' if 'debian-bookworm' == os_release else ''}}"
+    state: absent
+
+- name: Poetry is installed for Zsh plugin
+  community.general.pipx:
+    name: poetry
     state: latest
 
 - name: Node is present for installing Bitwarden CLI with npm
