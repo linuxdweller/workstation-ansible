@@ -20,12 +20,6 @@
     src: tmux.conf
     dest: ~/.tmux.conf
 
-- name: Old tmuxp is not installed
-  become: true
-  ansible.builtin.pip:
-    name: tmuxp
-    state: absent
-
 - name: tmuxp is present
   community.general.pipx:
     name: tmuxp

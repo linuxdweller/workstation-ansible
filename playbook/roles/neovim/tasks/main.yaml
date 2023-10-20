@@ -1,10 +1,4 @@
 ---
-- name: Removed NeoVim Debian package is absent
-  become: true
-  ansible.builtin.apt:
-    name: neovim
-    state: absent
-
 - name: Get NeoVim version
   ansible.builtin.command: nvim --version
   ignore_errors: true
@@ -55,11 +49,6 @@
     src: lazy-lock.json
     dest: ~/.config/nvim/lazy-lock.json
     mode: '0644'
-
-- name: Vimscript config is absent
-  ansible.builtin.file:
-    path: ~/.config/nvim/init.vim
-    state: absent
 
 - name: NeoVim config is present
   ansible.builtin.copy:
@@ -129,16 +118,6 @@
     name: '@ansible/ansible-language-server'
     global: true
     state: latest
-
-- name: Old Python development tool installations are absent
-  become: true
-  ansible.builtin.pip:
-    name:
-      - pyright
-      - mypy
-      - pylint
-      - black
-    state: absent
 
 - name: Pyright is installed
   community.general.pipx:

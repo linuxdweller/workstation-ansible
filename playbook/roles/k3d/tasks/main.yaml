@@ -12,13 +12,6 @@
 
 - name: jmespath is installed for json_query function
   become: true
-  ansible.builtin.pip:
-    name: jmespath
-    extra_args: "{{ '--break-system-packages' if 'debian-bookworm' == os_release else ''}}"
-    state: absent
-
-- name: jmespath is installed for json_query function
-  become: true
   ansible.builtin.apt:
     name: python3-jmespath
     state: latest

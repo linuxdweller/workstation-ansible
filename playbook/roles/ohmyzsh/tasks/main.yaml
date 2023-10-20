@@ -52,12 +52,6 @@
     extra_args: "{{ '--break-system-packages' if 'debian-bookworm' == os_release else ''}}"
     state: latest
 
-- name: Remove old Poetry installation
-  become: true
-  ansible.builtin.pip:
-    name: poetry
-    state: absent
-
 - name: Poetry is installed for Zsh plugin
   community.general.pipx:
     name: poetry

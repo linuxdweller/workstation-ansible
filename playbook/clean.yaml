@@ -1,0 +1,48 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Bad Kubernetes repository is absent
+      become: true
+      ansible.builtin.apt_repository:
+        repo: deb [signed-by=/etc/apt/keyrings/kubernetes.gpg] https://apt.kubernetes.io/ kubernetes-xenial main
+        state: absent
+
+    - name: Removed NeoVim Debian package is absent
+      become: true
+      ansible.builtin.apt:
+        name: neovim
+        state: absent
+
+    - name: Vimscript config is absent
+      ansible.builtin.file:
+        path: ~/.config/nvim/init.vim
+        state: absent
+
+    - name: Remove old Poetry installation
+      become: true
+      ansible.builtin.pip:
+        name: poetry
+        state: absent
+
+    - name: Old tmuxp is not installed
+      become: true
+      ansible.builtin.pip:
+        name: tmuxp
+        state: absent
+
+    - name: Old jmespath global installation is absent
+      become: true
+      ansible.builtin.pip:
+        name: jmespath
+        extra_args: "{{ '--break-system-packages' if 'debian-bookworm' == os_release else ''}}"
+        state: absent
+
+    - name: Old Python development tool installations are absent
+      become: true
+      ansible.builtin.pip:
+        name:
+          - pyright
+          - mypy
+          - pylint
+          - black
+        state: absent

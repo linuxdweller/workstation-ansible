@@ -12,12 +12,6 @@
     url: '{{ kubectl_apt_key_url }}'
     dest: /etc/apt/keyrings/kubernetes.asc
 
-- name: Bad Kubernetes repository is absent
-  become: true
-  ansible.builtin.apt_repository:
-    repo: deb [signed-by=/etc/apt/keyrings/kubernetes.gpg] https://apt.kubernetes.io/ kubernetes-xenial main
-    state: absent
-
 - name: Kubernetes package repository is present
   become: true
   ansible.builtin.apt_repository:
