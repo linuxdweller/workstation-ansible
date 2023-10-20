@@ -128,6 +128,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    main = "nvim-treesitter.configs",
     opts = {
       ensure_installed = {
         "bash",
@@ -153,9 +154,9 @@ return {
         "typescript",
         "yaml",
       },
+      auto_install = true,
       highlight = {
         enable = true,
-        additional_vim_regex_highlighting = { "org" }
       }
     }
   },
