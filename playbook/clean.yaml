@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
+  roles:
+    - role: group_distributions
   tasks:
     - name: Bad Kubernetes repository is absent
       become: true
@@ -16,6 +18,16 @@
     - name: Vimscript config is absent
       ansible.builtin.file:
         path: ~/.config/nvim/init.vim
+        state: absent
+
+    - name: Packer compiled plugins are absent
+      ansible.builtin.file:
+        path: ~/.config/nvim/plugin
+        state: absent
+
+    - name: Packer repository is absent
+      ansible.builtin.file:
+        path: ~/.local/share/nvim/site/
         state: absent
 
     - name: Remove old Poetry installation
