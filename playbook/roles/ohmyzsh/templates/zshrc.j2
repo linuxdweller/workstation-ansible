@@ -49,6 +49,9 @@ path+=('~/go/bin')
 # Add pipx binaries to path.
 path+=('~/.local/bin')
 
+# Add pnpm binaries to path.
+path+=('~/.local/share/pnpm')
+
 {% if is_wsl %}
 # Fix binareis from pip not being on PATH in WSL.
 path+=('~/.local/bin')
