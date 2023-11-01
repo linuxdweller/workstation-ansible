@@ -39,10 +39,10 @@ vim.api.nvim_create_autocmd('CursorHold', {
 })
 
 -- Statusline
-vim.api.nvim_set_hl(0, "StatusLine1", {bg="#677298", fg="#cad3f5"})
-vim.api.nvim_set_hl(0, "StatusLine2", {bg="#48506A", fg="#8F99BC"})
+vim.api.nvim_set_hl(0, "StatusLine1", {bg="bg", fg="#8F99BC"})
+vim.api.nvim_set_hl(0, "StatusLine2", {bg="bg", fg="#8F99BC"})
 vim.api.nvim_set_hl(0, "StatusLine3", {bg="bg", fg="#5b6078"})
-vim.opt.statusline = '%#StatusLine1# %f '
+vim.opt.statusline = '%#StatusLine1#%f'
 vim.opt.statusline:append("%#StatusLine2# %M %#normal#")
 vim.opt.statusline:append("%=")
-vim.opt.statusline:append("%#StatusLine3#%P %#StatusLine2# %l:%c ")
+vim.opt.statusline:append("%#StatusLine3#%P %#StatusLine2#%l:%c")
