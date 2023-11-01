@@ -2,7 +2,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      "someone-stole-my-name/yaml-companion.nvim",
       "hrsh7th/nvim-cmp"
     },
     config = function()
@@ -10,6 +9,7 @@ return {
       local lspconfig = require("lspconfig")
       local servers = {
         "ansiblels",
+        "clangd",
         "dockerls",
         "emmet_ls",
         "gopls",
@@ -18,15 +18,13 @@ return {
         "terraformls",
         "tilt_ls",
         "tsserver",
-        "clangd"
+        "yamlls",
       }
       for _, lsp in pairs(servers) do
         lspconfig[lsp].setup {
           capabilities = capabilities
         }
       end
-      local yamlConfig = require("yaml-companion").setup()
-      lspconfig.yamlls.setup(yamlConfig)
     end
   },
   {
