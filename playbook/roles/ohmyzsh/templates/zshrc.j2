@@ -44,17 +44,17 @@ export GPG_TTY=$(tty)
 
 # Add Golang binaries to path.
 path+=('/usr/local/go/bin')
-path+=('~/go/bin')
+path+=('{{ ansible_user_dir }}/go/bin')
 
 # Add pipx binaries to path.
-path+=('~/.local/bin')
+path+=('{{ ansible_user_dir }}/.local/bin')
 
 # Add pnpm binaries to path.
-path+=('~/.local/share/pnpm')
+path+=('{{ ansible_user_dir }}/.local/share/pnpm')
 
 {% if is_wsl %}
 # Fix binareis from pip not being on PATH in WSL.
-path+=('~/.local/bin')
+path+=('{{ ansible_user_dir }}/.local/bin')
 {% endif %}
 
 export path
