@@ -12,7 +12,7 @@
     name:
       - git
       - zsh
-    default_release: '{{ ohmyzsh_git_apt_release }}'
+    default_release: "{{ ohmyzsh_git_apt_release }}"
     state: latest
 
 - name: Oh My Zsh repository is cloned
@@ -24,11 +24,11 @@
   ansible.builtin.file:
     path: ~/.oh-my-zsh
     mode: go-w
-  
+
 - name: Zsh is the default shell
   become: true
   ansible.builtin.user:
-    name: '{{ ansible_user_id }}'
+    name: "{{ ansible_user_id }}"
     shell: /bin/zsh
 
 - name: Node Version Manager is cloned
@@ -68,10 +68,9 @@
 - name: Bitwarden CLI is installed for SSH key management
   become: true
   community.general.npm:
-    name: '@bitwarden/cli'
+    name: "@bitwarden/cli"
     state: latest
     global: true
-  when: 'ohmyzsh_use_bitwarden_ssh_key_storage'
 
 - name: is_wsl fact is set
   ansible.builtin.set_fact:
@@ -88,3 +87,8 @@
     src: minima.zsh-theme
     dest: ~/.oh-my-zsh/custom/themes/minima.zsh-theme
     mode: u=rw,go=r
+
+- name: custom plugins are present
+  ansible.builtin.copy:
+    src: plugins
+    dest: ~/.oh-my-zsh/custom

@@ -32,6 +32,10 @@ plugins+=(kubectl)
 plugins+=(helm)
 plugins+=(terraform)
 
+# Custom plugins
+export BITWARDEN_SSH_KEY_NOTE_ID='{{ ohmyzsh_bitwarden_ssh_key_note_id }}'
+plugins+=(bitwarden)
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -64,8 +68,3 @@ export COLORTERM
 
 # Additional aliases.
 alias grao='git remote add origin'
-
-{% if ohmyzsh_use_bitwarden_ssh_key_storage %}
-alias unseal='eval "$(ssh-agent -s)" && bw get notes '{{ ohmyzsh_bitwarden_ssh_key_note_id }}' | ssh-add key -'
-alias seal='eval "$(ssh-agent -k)"'
-{% endif %}
