@@ -152,6 +152,76 @@ ansible-playbook --ask-become-pass main.yaml
 The development environment should be all set up.
 [Check out the Gotchas section for further setup instructions.](#gotchas)
 
+### How-to Upgrade From Debian 11 to 12
+
+If you still have pets that can not be easily re-imaged you can use the following
+commands to upgrade from Debian 11 to 12.
+
+[See official documentation on upgrading](https://wiki.debian.org/DebianUpgrade)
+before going through the process.
+
+Make sure your system is fully updated on the older release:
+
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get full-upgrade
+```
+
+Change system repositories to `bookworm`:
+
+```
+sudo sed -i 's/bullseye/bookworm/g' /etc/apt/sources.list
+```
+
+You also need to update repositories you manage.
+If you only use this playbook to manage your system, you can remove user defined
+repositories and run the playbook after the upgrade finished.
+
+```
+rm /etc/apt/sources.list.d/*.list
+```
+
+Perform the upgrade:
+**DO NOT INTERRUPT THESE COMMANDS**
+
+```
+sudo apt-get clean
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get full-upgrade
+```
+
+Restart your system, when running `cat /etc/issue` it should say Debian 12.
+It is recommended to apply the playbook now. You may need to perform some
+bootstrapping steps again.
+
+### How-to Bootstrap On New Machine
+
+Installing global packages with `pip` on Debian may break system packages.
+This playbook both requires Poetry and manages Poetry with `pipx`, making it tricky
+to bootstrap on a brand new installation.
+
+Use the following commands to manually install `pipx` and Poetry:
+
+```
+sudo apt install python3-pip
+python3 -m pip install --user pipx --break-system-packages
+export PATH=~/.local/bin:$PATH
+pipx install poetry
+```
+
+Now you can install dependencies as usual:
+
+```
+cd playbook
+poetry install --no-root
+poetry shell
+ansible-galaxy collection install --requirements requirements.yaml
+```
+
+You are now ready to run the playbook on your new machine.
+
 ## Gotchas
 
 Quirks you might need to work around.
