@@ -152,6 +152,22 @@ ansible-playbook --ask-become-pass main.yaml
 The development environment should be all set up.
 [Check out the Gotchas section for further setup instructions.](#gotchas)
 
+### How-To Add Updated NeoVim Plugins Lockfile
+
+To update NeoVim plugins, use `lazy.nvim` and copy the updated lockfile to the `neovim` role:
+
+```
+cp ~/.config/nvim/lazy-lock.json playbook/roles/neovim/files
+```
+
+Or use `scp` to copy the lockfile from remote machine:
+
+```
+scp stirring-octopus@192.168.0.184:~/.config/nvim/lazy-lock.json playbook/roles/neovim/files
+```
+
+You can now commit the updated lockfile to the repository.
+
 ### How-To Upgrade From Debian 11 to 12
 
 If you still have pets that can not be easily re-imaged you can use the following
@@ -247,17 +263,3 @@ Quirks you might need to work around.
   Run `go install golang.org/x/tools/gopls@latest` and `go install golang.org/x/tools/cmd/goimports@latest`.
 - The playbook has changed a lot over time, run `clean.yaml` playbook before `main.yaml` on previously
   configured machines for best results.
-
-## Updating NeoVim Plugins
-
-To update NeoVim plugins, use `lazy.nvim` and copy the updated lockfile to the `neovim` role:
-
-```
-cp ~/.config/nvim/lazy-lock.json playbook/roles/neovim/files
-```
-
-Or use `scp` to copy the lockfile from remote machine:
-
-```
-scp stirring-octopus@192.168.0.184:~/.config/nvim/lazy-lock.json playbook/roles/neovim/files
-```
