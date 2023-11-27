@@ -30,7 +30,7 @@ bw-ssh-add() {
 	fi
 
 	# Check if tmux contains environment variable for forwarded SSH agent.
-	if tmux_env="$(tmux showenv -s SSH_AUTH_SOCK)"; then
+	if tmux_env="$(tmux showenv -s SSH_AUTH_SOCK 2> /dev/null)"; then
 		eval "${tmux_env}"
 		if [ "$( ssh-add -L 2>&- | grep "${signing_pubkey}" )" ];
 		then
