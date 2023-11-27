@@ -152,7 +152,7 @@ ansible-playbook --ask-become-pass main.yaml
 The development environment should be all set up.
 [Check out the Gotchas section for further setup instructions.](#gotchas)
 
-### How-to Upgrade From Debian 11 to 12
+### How-To Upgrade From Debian 11 to 12
 
 If you still have pets that can not be easily re-imaged you can use the following
 commands to upgrade from Debian 11 to 12.
@@ -196,7 +196,7 @@ Restart your system, when running `cat /etc/issue` it should say Debian 12.
 It is recommended to apply the playbook now. You may need to perform some
 bootstrapping steps again.
 
-### How-to Bootstrap On New Machine
+### How-To Bootstrap On New Machine
 
 Installing global packages with `pip` on Debian may break system packages.
 This playbook both requires Poetry and manages Poetry with `pipx`, making it tricky
@@ -221,6 +221,21 @@ ansible-galaxy collection install --requirements requirements.yaml
 ```
 
 You are now ready to run the playbook on your new machine.
+
+### How-To Set Gnome Terminal Theme
+
+[Use Catppuccin Gnome Terminal theme.](https://github.com/catppuccin/gnome-terminal)
+In particular, use the Macchiato flavor.
+
+Run the following command:
+**Make sure to verify the content of the link before running!**
+It is a short Python script.
+
+```
+curl -L https://raw.githubusercontent.com/catppuccin/gnome-terminal/v0.2.0/install.py | python3 -
+```
+
+You should see profiles for the theme in Gnome Terminal.
 
 ## Gotchas
 
