@@ -93,3 +93,4 @@
   ansible.builtin.copy:
     src: plugins
     dest: ~/.oh-my-zsh/custom
+    mode: "1744"

@@ -11,6 +11,7 @@
   ansible.builtin.get_url:
     url: "{{ helm_apt_key_url }}"
     dest: /etc/apt/keyrings/helm.asc
+    mode: "644"
 
 - name: Helm package repository is present
   become: true

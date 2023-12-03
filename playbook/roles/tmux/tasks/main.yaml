@@ -9,6 +9,7 @@
   ansible.builtin.file:
     path: ~/.tmux/plugins
     state: directory
+    mode: "1744"
 
 - name: Tpm is present
   ansible.builtin.git:
@@ -19,6 +20,7 @@
   ansible.builtin.copy:
     src: tmux.conf
     dest: ~/.tmux.conf
+    mode: "644"
 
 - name: Tmuxp is present
   community.general.pipx:

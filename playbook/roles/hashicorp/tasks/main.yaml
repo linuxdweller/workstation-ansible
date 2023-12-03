@@ -11,6 +11,7 @@
   ansible.builtin.get_url:
     url: "{{ hashicorp_apt_key_url }}"
     dest: /etc/apt/keyrings/hashicorp.asc
+    mode: "644"
 
 - name: Hashicorp package repository is present
   become: true

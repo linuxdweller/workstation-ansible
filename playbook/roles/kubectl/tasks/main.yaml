@@ -11,6 +11,7 @@
   ansible.builtin.get_url:
     url: "{{ kubectl_apt_key_url }}"
     dest: /etc/apt/keyrings/kubernetes.asc
+    mode: "644"
 
 - name: Kubernetes package repository is present
   become: true
