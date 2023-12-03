@@ -49,6 +49,7 @@
 - name: pipx is installed for Poetry download
   ansible.builtin.pip:
     name: pipx
+    executable: /usr/bin/pip3
     extra_args: "{{ '--break-system-packages' if 'debian-bookworm' == os_release else ''}}"
     state: latest
 

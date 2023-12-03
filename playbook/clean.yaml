@@ -34,18 +34,21 @@
       become: true
       ansible.builtin.pip:
         name: poetry
+        executable: /usr/bin/pip3
         state: absent
 
     - name: Old tmuxp is not installed
       become: true
       ansible.builtin.pip:
         name: tmuxp
+        executable: /usr/bin/pip3
         state: absent
 
     - name: Old jmespath global installation is absent
       become: true
       ansible.builtin.pip:
         name: jmespath
+        executable: /usr/bin/pip3
         extra_args: "{{ '--break-system-packages' if 'debian-bookworm' == os_release else ''}}"
         state: absent
 
@@ -57,4 +60,5 @@
           - mypy
           - pylint
           - black
+        executable: /usr/bin/pip3
         state: absent

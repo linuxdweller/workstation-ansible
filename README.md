@@ -61,12 +61,13 @@ terraform apply
 ```
 
 Go to `playbook` directory, install dependencies in a virtual environment,
-activate it and install Galaxy requirements:
+and install Galaxy requirements:
 
 ```
 cd ../playbook
-poetry install
-poetry shell
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --requirement requirements.txt
 ansible-galaxy collection install --requirements requirements.yaml
 ```
 
@@ -98,12 +99,13 @@ terraform apply
 ```
 
 Go to `playbook` directory, install dependencies in a virtual environment,
-activate it and install Galaxy requirements:
+and install Galaxy requirements:
 
 ```
 cd ../playbook
-poetry install
-poetry shell
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --requirement requirements.txt
 ansible-galaxy collection install --requirements requirements.yaml
 ```
 
@@ -128,12 +130,13 @@ sed 's/hosts: workstation/hosts: localhost/' -i playbook/main.yaml
 ```
 
 Go to `playbook` directory, install dependencies in a virtual environment,
-activate it and install Galaxy requirements:
+and install Galaxy requirements:
 
 ```
-cd playbook
-poetry install
-poetry shell
+cd ../playbook
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --requirement requirements.txt
 ansible-galaxy collection install --requirements requirements.yaml
 ```
 
@@ -221,18 +224,18 @@ to bootstrap on a brand new installation.
 Use the following commands to manually install `pipx` and Poetry:
 
 ```
-sudo apt install python3-pip
-python3 -m pip install --user pipx --break-system-packages
-export PATH=~/.local/bin:$PATH
-pipx install poetry
+sudo apt-get update
+sudo apt-get install python3-venv
+python3 -m venv .venv
 ```
 
 Now you can install dependencies as usual:
 
 ```
 cd playbook
-poetry install --no-root
-poetry shell
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --requirement requirements.txt
 ansible-galaxy collection install --requirements requirements.yaml
 ```
 
