@@ -10,4 +10,4 @@
       - os_release in ['ubuntu-jammy', 'debian-bullseye', 'debian-bookworm']
 
 - name: Set distribution dependant variables
-  ansible.builtin.include_vars: '{{ os_release }}.yaml'
+  ansible.builtin.include_vars: "{{ os_release }}.yaml"

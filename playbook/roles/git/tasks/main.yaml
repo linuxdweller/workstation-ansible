@@ -2,19 +2,19 @@
 - name: Git name is set
   community.general.git_config:
     name: user.name
-    value: '{{ git_user }}'
+    value: "{{ git_user }}"
     scope: global
 
 - name: Git email is set
   community.general.git_config:
     name: user.email
-    value: '{{ git_email }}'
+    value: "{{ git_email }}"
     scope: global
 
 - name: Git email is set
   community.general.git_config:
     name: user.signingKey
-    value: '{{ git_signing_key }}'
+    value: "{{ git_signing_key }}"
     scope: global
 
 - name: Git is configured to sign with SSH
@@ -26,13 +26,13 @@
 - name: Git is configured to sign commits
   community.general.git_config:
     name: commit.gpgSign
-    value: 'true'
+    value: "true"
     scope: global
 
 - name: Git is configured to sign tags
   community.general.git_config:
     name: tag.gpgSign
-    value: 'true'
+    value: "true"
     scope: global
 
 - name: Git is configured to run global hooks
@@ -45,10 +45,10 @@
   ansible.builtin.file:
     path: ~/.git-hooks
     state: directory
-    mode: '1755'
+    mode: "1755"
 
 - name: Pre commit hook is copied
   ansible.builtin.copy:
     src: pre-commit
     dest: ~/.git-hooks/pre-commit
-    mode: '1755'
+    mode: "1755"

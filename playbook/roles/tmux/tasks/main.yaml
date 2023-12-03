@@ -1,16 +1,16 @@
 ---
-- name: tmux is installed
+- name: Tmux is installed
   become: true
   ansible.builtin.apt:
     name: tmux
     state: latest
 
-- name: plugins directory is present
+- name: Plugins directory is present
   ansible.builtin.file:
     path: ~/.tmux/plugins
     state: directory
 
-- name: tpm is present
+- name: Tpm is present
   ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
     dest: ~/.tmux/plugins/tpm
@@ -20,7 +20,7 @@
     src: tmux.conf
     dest: ~/.tmux.conf
 
-- name: tmuxp is present
+- name: Tmuxp is present
   community.general.pipx:
     name: tmuxp
     state: latest

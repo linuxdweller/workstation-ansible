@@ -15,7 +15,7 @@
 
 - name: Set is_neovim_present fact
   ansible.builtin.set_fact:
-    is_neovim_present: '{{ not neovim_version_check.failed and neovim_version_check.stdout | regex_search(neovim_version | regex_escape()) }}'
+    is_neovim_present: "{{ not neovim_version_check.failed and neovim_version_check.stdout | regex_search(neovim_version | regex_escape()) }}"
 
 - name: Download NeoVim appimage
   ansible.builtin.get_url:
@@ -29,10 +29,10 @@
     src: /tmp/neovim.appimage
     remote_src: true
     dest: /usr/local/bin/nvim
-    mode: '0755'
+    mode: "0755"
   when: not is_neovim_present
 
-- name: lazy.nvim repository is cloned
+- name: Lazy.nvim repository is cloned
   ansible.builtin.git:
     repo: https://github.com/folke/lazy.nvim.git
     dest: ~/.local/share/nvim/lazy/lazy.nvim
@@ -44,29 +44,29 @@
     path: ~/.config/nvim
     state: directory
 
-- name: lazy.nvim lockfile is present
+- name: Lazy.nvim lockfile is present
   ansible.builtin.copy:
     src: lazy-lock.json
     dest: ~/.config/nvim/lazy-lock.json
-    mode: '0644'
+    mode: "0644"
 
 - name: NeoVim config is present
   ansible.builtin.copy:
     src: init.lua
     dest: ~/.config/nvim/init.lua
-    mode: '0644'
+    mode: "0644"
 
 - name: Lua folder is present
   ansible.builtin.file:
     path: ~/.config/nvim/lua
     state: directory
-    mode: '1755'
+    mode: "1755"
 
-- name: plugins.lua is present
+- name: Plugins.lua is present
   ansible.builtin.copy:
     src: plugins.lua
     dest: ~/.config/nvim/lua/plugins.lua
-    mode: '0644'
+    mode: "0644"
 
 - name: Node is present for installing language servers with npm
   become: true
@@ -76,7 +76,7 @@
       - npm
     state: latest
 
-  # TODO Add typescript compiler
+# TODO Add typescript compiler
 - name: TypeScript language server is installed
   become: true
   community.general.npm:
@@ -108,14 +108,14 @@
 - name: Tailwind language server is installed
   become: true
   community.general.npm:
-    name: '@tailwindcss/language-server'
+    name: "@tailwindcss/language-server"
     global: true
     state: latest
 
 - name: Ansible language server is installed
   become: true
   community.general.npm:
-    name: '@ansible/ansible-language-server'
+    name: "@ansible/ansible-language-server"
     global: true
     state: latest
 
@@ -139,7 +139,7 @@
     name: black
     state: latest
 
-- name: search tools are installed
+- name: Search tools are installed
   become: true
   ansible.builtin.apt:
     name:

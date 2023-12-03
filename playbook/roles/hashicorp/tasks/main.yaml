@@ -4,18 +4,18 @@
   ansible.builtin.file:
     path: /etc/apt/keyrings
     state: directory
-    mode: '1755'
+    mode: "1755"
 
 - name: Hashicorp GPG key is present
   become: true
   ansible.builtin.get_url:
-    url: '{{ hashicorp_apt_key_url }}'
+    url: "{{ hashicorp_apt_key_url }}"
     dest: /etc/apt/keyrings/hashicorp.asc
 
 - name: Hashicorp package repository is present
   become: true
   ansible.builtin.apt_repository:
-    repo: '{{ hashicorp_apt_repository }}'
+    repo: "{{ hashicorp_apt_repository }}"
 
 - name: Latest Terraform, Packer, and language server are installed
   become: true
@@ -25,4 +25,4 @@
       - packer
       - terraform-ls
     state: latest
-    update_cache: yes
+    update_cache: true

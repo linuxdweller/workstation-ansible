@@ -17,22 +17,22 @@
       when: not is_wsl
     - role: k3d
   tasks:
-    - name: nnn is present
+    - name: Nnn is present
       become: true
       github_release_asset:
         repo: jarun/nnn
         asset_pattern: nerd-static
-    - name: tilt is present
+    - name: Tilt is present
       become: true
       github_release_asset:
         repo: tilt-dev/tilt
         asset_pattern: linux\.x86_64
-    - name: vale is present
+    - name: Vale is present
       become: true
       github_release_asset:
         repo: errata-ai/vale
         asset_pattern: Linux_64
-    - name: golangci-lint is present
+    - name: Golangci-lint is present
       become: true
       github_release_asset:
         repo: golangci/golangci-lint

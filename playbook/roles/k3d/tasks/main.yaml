@@ -10,7 +10,7 @@
   changed_when: false
   register: k3d
 
-- name: jmespath is installed for json_query function
+- name: Jmespath is installed for json_query function
   become: true
   ansible.builtin.apt:
     name: python3-jmespath
@@ -18,7 +18,7 @@
 
 - name: Set facts
   ansible.builtin.set_fact:
-    is_latest_k3d: "{{ not not ((not k3d.failed) and (k3d.stdout | regex_search(latest_release.json | community.general.json_query(\"tag_name\")))) }}"
+    is_latest_k3d: '{{ not not ((not k3d.failed) and (k3d.stdout | regex_search(latest_release.json | community.general.json_query("tag_name")))) }}'
     latest_k3d_url: "{{ latest_release.json | community.general.json_query(\"assets[?name=='k3d-linux-amd64'].browser_download_url\") | first }}"
 
 - name: Download latest binary
@@ -26,5 +26,5 @@
   ansible.builtin.get_url:
     url: "{{ latest_k3d_url }}"
     dest: /usr/local/bin/k3d
-    mode: 0755
+    mode: "0755"
   when: not is_latest_k3d

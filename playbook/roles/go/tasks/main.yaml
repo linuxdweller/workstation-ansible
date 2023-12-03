@@ -19,7 +19,7 @@
 - name: Download Go
   become: true
   ansible.builtin.unarchive:
-    src: "https://go.dev/dl/go{{ go_version }}.linux-amd64.tar.gz"
+    src: https://go.dev/dl/go{{ go_version }}.linux-amd64.tar.gz
     remote_src: true
     dest: /usr/local
   when: not go_installed

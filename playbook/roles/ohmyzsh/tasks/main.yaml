@@ -36,21 +36,21 @@
     repo: https://github.com/nvm-sh/nvm
     dest: ~/.nvm
 
-- name: fzf is installed for Zsh plugin
+- name: Fzf is installed for Zsh plugin
   become: true
   ansible.builtin.apt:
     name: fzf
 
-- name: pip is installed for Poetry download
+- name: Pip is installed for Poetry download
   become: true
   ansible.builtin.apt:
     name: python3-pip
 
-- name: pipx is installed for Poetry download
+- name: Pipx is installed for Poetry download
   ansible.builtin.pip:
     name: pipx
     executable: /usr/bin/pip3
-    extra_args: "{{ '--break-system-packages' if 'debian-bookworm' == os_release else ''}}"
+    extra_args: "{{ '--break-system-packages' if 'debian-bookworm' == os_release else '' }}"
     state: latest
 
 - name: Poetry is installed for Zsh plugin
@@ -73,7 +73,7 @@
     state: latest
     global: true
 
-- name: is_wsl fact is set
+- name: Is_wsl fact is set
   ansible.builtin.set_fact:
     is_wsl: "{{ not not (ansible_kernel | regex_search('microsoft')) }}"
 
@@ -83,13 +83,13 @@
     dest: ~/.zshrc
     mode: u=rw,go=r
 
-- name: custom theme is present
+- name: Custom theme is present
   ansible.builtin.template:
     src: minima.zsh-theme
     dest: ~/.oh-my-zsh/custom/themes/minima.zsh-theme
     mode: u=rw,go=r
 
-- name: custom plugins are present
+- name: Custom plugins are present
   ansible.builtin.copy:
     src: plugins
     dest: ~/.oh-my-zsh/custom

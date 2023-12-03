@@ -4,20 +4,20 @@
   ansible.builtin.file:
     path: /etc/apt/keyrings
     state: directory
-    mode: '1755'
+    mode: "1755"
 
 - name: Docker apt repository GPG key is present
   become: true
   ansible.builtin.get_url:
-    url: '{{ docker_apt_key_url }}'
+    url: "{{ docker_apt_key_url }}"
     dest: /etc/apt/keyrings/docker.asc
-    mode: '0644'
+    mode: "0644"
 
 - name: Docker apt repository is present
   become: true
   ansible.builtin.copy:
     dest: /etc/apt/sources.list.d/docker.list
-    content: '{{ docker_apt_repository }}'
+    content: "{{ docker_apt_repository }}"
 
 - name: Docker is installed
   become: true
