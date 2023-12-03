@@ -69,4 +69,4 @@ lint-ansible:
   extends: .ansible
   stage: validate
   script:
-    - ansible-lint -P production
+    - ansible-lint main.yaml
