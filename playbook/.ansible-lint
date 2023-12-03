@@ -1,2 +1,5 @@
 ---
 profile: production
+skip_list:
+  - latest[git]
+  - package-latest
