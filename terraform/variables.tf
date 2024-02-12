@@ -8,7 +8,7 @@ variable "proxmox_target_node" {
   type        = string
 }
 
-variable "cloud_init_public_keys" {
+variable "authorized_keys" {
   description = "SSH public keys to add with Cloud Init."
-  type        = string
+  type        = list(string)
 }
