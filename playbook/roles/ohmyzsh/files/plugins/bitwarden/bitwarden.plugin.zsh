@@ -1,4 +1,3 @@
-alias bw-ssh=bw-ssh-add
 alias bwsa=bw-ssh-add
 
 bw-ssh-add() {

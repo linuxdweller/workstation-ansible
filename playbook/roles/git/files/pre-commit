@@ -2,7 +2,7 @@
 
 if [ -z "$( ssh-add -L | grep "$(git config --global --get user.signingkey)" )" ];
 then
-	echo -e "\033[0;31mError:\033[0m Signing key not found in SSH agent."
-	echo "Make sure your signing key is in SSH agent, and/or SSH agent forwarding is working."
+	echo -e '\033[0;31m!\033[0m Signing key not found in SSH agent'
+	echo -e '  \033[0;37mAdd it by running the `bwsa` command.'
 	exit -1
 fi
