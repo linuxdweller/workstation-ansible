@@ -103,7 +103,7 @@ and install Galaxy requirements:
 
 ```
 cd ../playbook
-python3 -m venv .venv
+python3 -m venv --system-site-packages .venv
 source .venv/bin/activate
 pip install --requirement requirements.txt
 ansible-galaxy collection install --requirements requirements.yaml
@@ -134,7 +134,7 @@ and install Galaxy requirements:
 
 ```
 cd ../playbook
-python3 -m venv .venv
+python3 -m venv --system-site-packages .venv
 source .venv/bin/activate
 pip install --requirement requirements.txt
 ansible-galaxy collection install --requirements requirements.yaml
@@ -233,7 +233,7 @@ Now you can install dependencies as usual:
 
 ```
 cd playbook
-python3 -m venv .venv
+python3 -m venv --system-site-packages .venv
 source .venv/bin/activate
 pip install --requirement requirements.txt
 ansible-galaxy collection install --requirements requirements.yaml
