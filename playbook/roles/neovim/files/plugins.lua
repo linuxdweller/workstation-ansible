@@ -249,22 +249,23 @@ return {
   },
   {
     "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
     config = function()
       local null_ls = require("null-ls")
       null_ls.setup({
         sources = {
           null_ls.builtins.code_actions.gitsigns,
           null_ls.builtins.diagnostics.ansiblelint,
-          null_ls.builtins.diagnostics.eslint,
-          -- Should use either flake8 or black, not both.
-          -- null_ls.builtins.diagnostics.flake8,
+          require("none-ls.diagnostics.eslint"),
           null_ls.builtins.diagnostics.golangci_lint,
           null_ls.builtins.diagnostics.hadolint,
           null_ls.builtins.diagnostics.mypy,
           null_ls.builtins.diagnostics.pylint,
           null_ls.builtins.diagnostics.stylelint,
           null_ls.builtins.formatting.black,
-          null_ls.builtins.formatting.eslint,
+          require("none-ls.formatting.eslint"),
           null_ls.builtins.formatting.gofmt,
           null_ls.builtins.formatting.goimports,
           null_ls.builtins.formatting.packer,
