@@ -5,8 +5,6 @@ require('lazy').setup('plugins')
 -- Disable mouse mode.
 vim.opt.mouse = ''
 
--- Use normal clipboard.
-vim.opt.clipboard = 'unnamedplus'
 -- Display line numbers.
 vim.opt.number = true
 
@@ -16,7 +14,6 @@ vim.opt.undolevels = 10000
 
 vim.api.nvim_set_keymap('n', '<leader>rn', '', {noremap = true, callback = vim.lsp.buf.rename})
 
--- Show LSP hover when holding the cursor for 500ms.
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
   -- Prevent focusing on the hover popup.
   -- See https://github.com/neovim/nvim-lspconfig/issues/1037
