@@ -157,3 +157,20 @@
       - clangd
       - bear
     state: latest
+
+- name: Get latest Helm language server release
+  ansible.builtin.set_fact:
+    helm_ls_latest_release: "{{ lookup('ansible.builtin.url', 'https://api.github.com/repos/mrjosh/helm-ls/releases/latest', split_lines=False) }}"
+
+- name: Helm language server version facts are set
+  ansible.builtin.set_fact:
+    helm_ls_checksum_url: https://github.com/mrjosh/helm-ls/releases/download/{{ helm_ls_latest_release.name }}/helm_ls_linux_amd64.sha256sum
+    helm_ls_url: https://github.com/mrjosh/helm-ls/releases/download/{{ helm_ls_latest_release.name }}/helm_ls_linux_amd64
+
+- name: Helm language server is installed
+  become: true
+  ansible.builtin.get_url:
+    url: "{{ helm_ls_url }}"
+    checksum: "sha256:{{ (lookup('ansible.builtin.url', helm_ls_checksum_url) | split(' '))[0] }}"
+    dest: /usr/local/bin/helm_ls
+    mode: "755"

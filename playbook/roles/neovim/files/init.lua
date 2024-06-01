@@ -29,3 +29,12 @@ vim.opt.statusline = '%#StatusLine1#%f'
 vim.opt.statusline:append("%#StatusLine2# %M %#normal#")
 vim.opt.statusline:append("%=")
 vim.opt.statusline:append("%#StatusLine3#%P %#StatusLine2#%l:%c")
+
+-- Helm filetype detection
+vim.filetype.add({
+  pattern = {
+    [".*/templates/.*%.ya?ml"] = "helm",
+    [".*/templates/.*%.tpl"] = "helm",
+    [".*/templates/.*%.txt"] = "helm",
+  },
+})
