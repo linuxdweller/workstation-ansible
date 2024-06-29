@@ -1,0 +1,30 @@
+---
+- name: Get latest version
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/kubernetes-sigs/kind/releases/latest
+  register: latest_release
+
+- name: Get installed version
+  ansible.builtin.command: /usr/local/bin/kind version
+  ignore_errors: true
+  changed_when: false
+  register: kind
+
+- name: Jmespath is installed for json_query function
+  become: true
+  ansible.builtin.apt:
+    name: python3-jmespath
+    state: latest
+
+- name: Set facts
+  ansible.builtin.set_fact:
+    is_latest_k3d: '{{ not not ((not kind.failed) and (kind.stdout | regex_search(latest_release.json | community.general.json_query("tag_name")))) }}'
+    latest_kind_url: "{{ latest_release.json | community.general.json_query(\"assets[?name=='kind-linux-amd64'].browser_download_url\") | first }}"
+
+- name: Download latest binary
+  become: true
+  ansible.builtin.get_url:
+    url: "{{ latest_kind_url }}"
+    dest: /usr/local/bin/kind
+    mode: "0755"
+  when: not is_latest_k3d

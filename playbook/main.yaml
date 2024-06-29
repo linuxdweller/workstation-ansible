@@ -15,6 +15,7 @@
       # Do not manage Docker in WSL, as it is managed by Docker Desktop on Windows.
       when: not is_wsl
     - role: k3d
+    - role: kind
   tasks:
     - name: Nnn is present
       become: true
