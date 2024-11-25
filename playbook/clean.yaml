@@ -35,12 +35,14 @@
       ansible.builtin.pip:
         name: poetry
         executable: /usr/bin/pip3
+        extra_args: "{{ '--break-system-packages' if 'debian-bookworm' == os_release else ''}}"
         state: absent
 
     - name: Old tmuxp is not installed
       become: true
       ansible.builtin.pip:
         name: tmuxp
+        extra_args: "{{ '--break-system-packages' if 'debian-bookworm' == os_release else ''}}"
         executable: /usr/bin/pip3
         state: absent
 
@@ -61,4 +63,5 @@
           - pylint
           - black
         executable: /usr/bin/pip3
+        extra_args: "{{ '--break-system-packages' if 'debian-bookworm' == os_release else ''}}"
         state: absent

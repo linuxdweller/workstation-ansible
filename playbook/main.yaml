@@ -1,6 +1,6 @@
 ---
 - name: Main
-  hosts: workstation
+  hosts: localhost
   roles:
     - role: group_distributions
     - role: ohmyzsh
@@ -8,12 +8,12 @@
     - role: neovim
     - role: git
     - role: go
-    - role: hashicorp
     - role: kubectl
     - role: helm
     - role: docker
       # Do not manage Docker in WSL, as it is managed by Docker Desktop on Windows.
       when: not is_wsl
+    - role: hashicorp
     - role: k3d
     - role: kind
   tasks:
