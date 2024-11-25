@@ -86,6 +86,13 @@
     global: true
     state: latest
 
+- name: Astro language server is installed
+  become: true
+  community.general.npm:
+    name: "@astrojs/language-server"
+    global: true
+    state: latest
+
 - name: YAML language server is installed
   become: true
   community.general.npm:

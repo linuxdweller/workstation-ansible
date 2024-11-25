@@ -9,6 +9,7 @@ return {
       local lspconfig = require("lspconfig")
       local servers = {
         "ansiblels",
+        "astro",
         "clangd",
         "dockerls",
         "emmet_ls",
