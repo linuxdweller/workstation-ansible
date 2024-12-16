@@ -27,4 +27,5 @@
     url: "{{ latest_k3d_url }}"
     dest: /usr/local/bin/k3d
     mode: "0755"
+    force: true
   when: not is_latest_k3d

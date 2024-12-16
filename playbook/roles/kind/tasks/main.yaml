@@ -27,4 +27,5 @@
     url: "{{ latest_kind_url }}"
     dest: /usr/local/bin/kind
     mode: "0755"
+    force: true
   when: not is_latest_k3d

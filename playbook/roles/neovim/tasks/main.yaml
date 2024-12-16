@@ -22,6 +22,7 @@
     url: https://github.com/neovim/neovim/releases/download/{{ neovim_version }}/nvim.appimage
     dest: /tmp/neovim.appimage
     mode: "755"
+    force: true
   when: not is_neovim_present
 
 - name: Install NeoVim appimage by copying it
