@@ -19,7 +19,7 @@ return {
         "tailwindcss",
         "terraformls",
         "tilt_ls",
-        "tsserver",
+        "ts_ls",
         "yamlls",
       }
       for _, lsp in pairs(servers) do
