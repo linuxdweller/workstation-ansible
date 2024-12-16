@@ -9,6 +9,7 @@
     - role: git
     - role: go
     - role: kubectl
+    - role: hashicorp
     - role: helm
     - role: docker
       # Do not manage Docker in WSL, as it is managed by Docker Desktop on Windows.

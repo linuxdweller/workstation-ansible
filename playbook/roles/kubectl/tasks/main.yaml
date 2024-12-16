@@ -12,6 +12,9 @@
     url: "{{ kubectl_apt_key_url }}"
     dest: /etc/apt/keyrings/kubernetes.asc
     mode: "644"
+    # Without force Ansible does not download the file even if the URL changed,
+    # leaving the old key resulting in errors during apt update.
+    force: true
 
 - name: Kubernetes package repository is present
   become: true
