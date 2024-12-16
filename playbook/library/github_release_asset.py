@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from io import BytesIO
-from subprocess import CalledProcessError, run
+from subprocess import CalledProcessError, TimeoutExpired, run
 from typing import Optional, Pattern
 from tarfile import TarFile
 from gzip import GzipFile
@@ -15,13 +15,19 @@ import requests
 def check_version(version_command: list[str], expected_version: str) -> bool:
     try:
         command_result = run(
-            version_command, capture_output=True, text=True, check=True
+            version_command,
+            capture_output=True,
+            text=True,
+            check=True,
+            timeout=1,
         )
         # Strip leading v often included in tags, but not in version outputs.
         return expected_version.lstrip("v") in command_result.stdout
     except CalledProcessError:
         return False
     except FileNotFoundError:
+        return False
+    except TimeoutExpired:
         return False
 
 
