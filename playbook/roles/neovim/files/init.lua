@@ -12,11 +12,15 @@ vim.opt.number = true
 vim.opt.undofile = true
 vim.opt.undolevels = 10000
 
+-- Set tabs to display as 2 spaces.
+vim.opt.tabstop = 2
+
+-- Set keymap for LSP renaming.
 vim.api.nvim_set_keymap('n', '<leader>rn', '', {noremap = true, callback = vim.lsp.buf.rename})
 
+-- Prevent focusing on the hover popup.
+-- See https://github.com/neovim/nvim-lspconfig/issues/1037
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-  -- Prevent focusing on the hover popup.
-  -- See https://github.com/neovim/nvim-lspconfig/issues/1037
   focusable = false,
   border = 'rounded'
 })
