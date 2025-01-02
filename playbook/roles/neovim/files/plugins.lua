@@ -291,13 +291,6 @@ return {
     end
   },
   {
-    "luukvbaal/nnn.nvim",
-    config = function()
-      require("nnn").setup()
-      vim.api.nvim_set_keymap("n", "<leader>nn", "<cmd>NnnPicker<cr>", {noremap = true})
-    end
-  },
-  {
     "lewis6991/gitsigns.nvim",
     config = function()
       require("gitsigns").setup()
@@ -349,12 +342,6 @@ return {
         enabled = false
       }
     }
-  },
-  {
-    "ggandor/leap.nvim",
-    config = function()
-      require("leap").set_default_keymaps()
-    end
   },
   "tpope/vim-sleuth"
 }
