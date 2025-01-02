@@ -239,6 +239,7 @@ return {
       local null_ls = require("null-ls")
       null_ls.setup({
         sources = {
+          null_ls.builtins.code_actions.gitsigns,
           null_ls.builtins.diagnostics.ansiblelint,
           require("none-ls.diagnostics.eslint"),
           null_ls.builtins.diagnostics.golangci_lint,
@@ -277,6 +278,30 @@ return {
     end
   },
   {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("gitsigns").setup()
+      vim.api.nvim_set_keymap("n", "<leader>ha", "<cmd>Gitsigns stage_hunk<cr>",
+        {silent = true, noremap = true}
+      )
+      vim.api.nvim_set_keymap("v", "<leader>ha", "<cmd>Gitsigns stage_hunk<cr>",
+        {silent = true, noremap = true}
+      )
+      vim.api.nvim_set_keymap("n", "<leader>hr", "<cmd>Gitsigns reset_hunk<cr>",
+        {silent = true, noremap = true}
+      )
+      vim.api.nvim_set_keymap("v", "<leader>hr", "<cmd>Gitsigns reset_hunk<cr>",
+        {silent = true, noremap = true}
+      )
+      vim.api.nvim_set_keymap("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<cr>",
+        {silent = true, noremap = true}
+      )
+      vim.api.nvim_set_keymap("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<cr>",
+        {silent = true, noremap = true}
+      )
+    end
+  },
+  {
     "echasnovski/mini.nvim",
     branch = "stable",
     config = function()
@@ -285,11 +310,6 @@ return {
         delay = 0
       })
       require("mini.pairs").setup()
-      require("mini.diff").setup({
-        view = {
-          style = "number"
-        }
-      })
     end
   },
   {
