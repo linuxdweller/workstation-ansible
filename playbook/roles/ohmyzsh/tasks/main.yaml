@@ -31,11 +31,6 @@
     name: "{{ ansible_user_id }}"
     shell: /bin/zsh
 
-- name: Node Version Manager is cloned
-  ansible.builtin.git:
-    repo: https://github.com/nvm-sh/nvm
-    dest: ~/.nvm
-
 - name: Fzf is installed for Zsh plugin
   become: true
   ansible.builtin.apt:
