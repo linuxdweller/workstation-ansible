@@ -279,7 +279,7 @@ return {
       })
       -- Format files on save.
       vim.api.nvim_create_autocmd('BufWritePre', {
-        pattern = '*.go,*.py,*.[jt]s,*.[jt]sx,*.css,*.s[ac]ss,*.json,*.yaml,*.yml,*.md,*.tf,*.hcl,*.astro,*.html',
+        pattern = '*.go,*.py,*.[jt]s,*.[jt]sx,*.mjs,*.css,*.s[ac]ss,*.json,*.yaml,*.yml,*.md,*.tf,*.hcl,*.astro,*.html',
         callback = function()
           vim.lsp.buf.format({
             filter = function(client)
