@@ -19,7 +19,6 @@ return {
         "tailwindcss",
         "terraformls",
         "tilt_ls",
-        "ts_ls",
         "yamlls",
       }
       for _, lsp in pairs(servers) do
@@ -28,6 +27,11 @@ return {
         }
       end
     end
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
   },
   {
     "nvim-telescope/telescope.nvim",
