@@ -1,3 +1,5 @@
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -261,7 +263,22 @@ return {
     },
     config = function()
       local null_ls = require("null-ls")
+
       null_ls.setup({
+        on_attach = function(client, bufnr)
+        -- Source: https://github.com/nvimtools/none-ls.nvim/wiki/Formatting-on-save
+        -- Format on save:
+        if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                    vim.lsp.buf.format({ async = false })
+                end,
+            })
+          end
+        end,
         sources = {
           null_ls.builtins.code_actions.gitsigns,
           null_ls.builtins.diagnostics.ansiblelint,
@@ -280,17 +297,6 @@ return {
           null_ls.builtins.formatting.stylelint,
           null_ls.builtins.formatting.terraform_fmt
         }
-      })
-      -- Format files on save.
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        pattern = '*.go,*.py,*.[jt]s,*.[jt]sx,*.mjs,*.css,*.s[ac]ss,*.json,*.yaml,*.yml,*.md,*.tf,*.hcl,*.astro,*.html',
-        callback = function()
-          vim.lsp.buf.format({
-            filter = function(client)
-              return client.name == 'null-ls'
-            end
-          })
-        end
       })
     end
   },
