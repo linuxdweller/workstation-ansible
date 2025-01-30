@@ -1,5 +1,7 @@
 # Workstation Ansible
 
+Install ansible collection dependencies using: `ansible-galaxy install -r requirements.yml`
+
 ## On Fresh Intall
 
 TPM:
