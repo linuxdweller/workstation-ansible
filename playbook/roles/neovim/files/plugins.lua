@@ -67,10 +67,12 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-vsnip",
-      "hrsh7th/vim-vsnip",
-      "hrsh7th/vim-vsnip-integ",
-      "rafamadriz/friendly-snippets"
+      "rafamadriz/friendly-snippets",
+      {
+        "garymjr/nvim-snippets",
+        create_cmp_source = true,
+        friendly_snippets = true,
+      },
     },
     config = function()
       vim.opt.completeopt = {"menu", "menuone", "noselect"}
@@ -79,8 +81,8 @@ return {
       cmp.setup({
         snippet = {
           expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body)
-          end
+            vim.snippet.expand(args.body)
+          end,
         },
         mapping = cmp.mapping.preset.insert({
           -- Recommended keymap.
@@ -95,7 +97,7 @@ return {
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp"},
-          { name = "vsnip" }
+          { name = "snippets" }
         }, {
           { name = "buffer" }
         })
