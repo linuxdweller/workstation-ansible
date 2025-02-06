@@ -71,35 +71,20 @@ return {
       sources = {
         providers = {
           lsp = {
-            async = true,
             score_offset = 3
           }
         }
       },
       completion = {
         documentation = {
+          treesitter_highlighting = true,
+          window = { border = 'single' },
           auto_show = true,
-          auto_show_delay_ms = 0,
-          update_delay_ms = 0
         },
         menu = {
           border = 'single',
           draw = {
-            -- colorful-menu.nvim integration
-            -- Source: https://github.com/xzbdmw/colorful-menu.nvim?tab=readme-ov-file#use-it-in-blinkcmp
-            columns = { { "kind_icon" }, { "label", gap = 1 } },
-            components = {
-                label = {
-                    text = function(ctx)
-                        return require("colorful-menu").blink_components_text(ctx)
-                    end,
-                    highlight = function(ctx)
-                        return require("colorful-menu").blink_components_highlight(ctx)
-                    end,
-                },
-            },
-            -- Source: https://cmp.saghen.dev/configuration/completion#treesitter
-            treesitter = { 'lsp' },
+            columns = { { "source_name" }, { "kind_icon", "kind" }, { "label", gap = 1 } },
           }
         }
       }
@@ -287,19 +272,18 @@ return {
         end,
         sources = {
           null_ls.builtins.diagnostics.ansiblelint,
-          require("none-ls.diagnostics.eslint"),
+          require("none-ls.diagnostics.eslint_d"),
           null_ls.builtins.diagnostics.golangci_lint,
           null_ls.builtins.diagnostics.hadolint,
           null_ls.builtins.diagnostics.mypy,
           null_ls.builtins.diagnostics.pylint,
           null_ls.builtins.diagnostics.stylelint,
           null_ls.builtins.formatting.black,
-          require("none-ls.formatting.eslint"),
+          require("none-ls.formatting.eslint_d"),
           null_ls.builtins.formatting.gofmt,
           null_ls.builtins.formatting.goimports,
           null_ls.builtins.formatting.packer,
-          null_ls.builtins.formatting.prettier,
-          null_ls.builtins.formatting.stylelint,
+          null_ls.builtins.formatting.prettierd,
           null_ls.builtins.formatting.terraform_fmt
         }
       })

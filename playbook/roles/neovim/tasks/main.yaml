@@ -79,7 +79,20 @@
       - npm
     state: latest
 
-# TODO Add typescript compiler
+- name: prettierd is present
+  become: true
+  community.general.npm:
+    name: "@fsouza/prettierd"
+    global: true
+    state: latest
+
+- name: eslintd is present
+  become: true
+  community.general.npm:
+    name: eslint_d
+    global: true
+    state: latest
+
 - name: TypeScript language server is installed
   become: true
   community.general.npm:
