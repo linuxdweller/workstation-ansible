@@ -1,14 +1,13 @@
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
 return {
+  -- TODO: Add https://github.com/xzbdmw/colorful-menu.nvim
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      "hrsh7th/nvim-cmp"
+      "saghen/blink.cmp"
     },
-    config = function()
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    config = function(_, opts)
       local lspconfig = require("lspconfig")
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
       local servers = {
         "ansiblels",
         "astro",
@@ -61,48 +60,50 @@ return {
     end
   },
   {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      "rafamadriz/friendly-snippets",
-      {
-        "garymjr/nvim-snippets",
-        create_cmp_source = true,
-        friendly_snippets = true,
+    "saghen/blink.cmp",
+    lazy = false,
+    dependencies = { "rafamadriz/friendly-snippets",  "xzbdmw/colorful-menu.nvim" },
+    version = "v0.*",
+    opts = {
+      keymap = {
+        preset = "super-tab"
       },
-    },
-    config = function()
-      vim.opt.completeopt = {"menu", "menuone", "noselect"}
-
-      local cmp = require("cmp")
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            vim.snippet.expand(args.body)
-          end,
+      sources = {
+        providers = {
+          lsp = {
+            async = true,
+            score_offset = 3
+          }
+        }
+      },
+      completion = {
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 0,
+          update_delay_ms = 0
         },
-        mapping = cmp.mapping.preset.insert({
-          -- Recommended keymap.
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
-          -- Use tab to select next item.
-          ["<Tab>"] = cmp.mapping.select_next_item(),
-          ["<S-Tab>"] = cmp.mapping.select_prev_item()
-        }),
-        sources = cmp.config.sources({
-          { name = "nvim_lsp"},
-          { name = "snippets" }
-        }, {
-          { name = "buffer" }
-        })
-      })
-    end
+        menu = {
+          border = 'single',
+          draw = {
+            -- colorful-menu.nvim integration
+            -- Source: https://github.com/xzbdmw/colorful-menu.nvim?tab=readme-ov-file#use-it-in-blinkcmp
+            columns = { { "kind_icon" }, { "label", gap = 1 } },
+            components = {
+                label = {
+                    text = function(ctx)
+                        return require("colorful-menu").blink_components_text(ctx)
+                    end,
+                    highlight = function(ctx)
+                        return require("colorful-menu").blink_components_highlight(ctx)
+                    end,
+                },
+            },
+            -- Source: https://cmp.saghen.dev/configuration/completion#treesitter
+            treesitter = { 'lsp' },
+          }
+        }
+      }
+    }
   },
   {
     "folke/trouble.nvim",
@@ -254,7 +255,11 @@ return {
     name = "catppuccin",
     config = function()
       vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
-      require("catppuccin").setup()
+      require("catppuccin").setup({
+        integrations = {
+          blink_cmp = true
+        }
+      })
       vim.api.nvim_command("colorscheme catppuccin")
     end
   },
@@ -265,7 +270,6 @@ return {
     },
     config = function()
       local null_ls = require("null-ls")
-
       null_ls.setup({
         on_attach = function(client, bufnr)
         -- Source: https://github.com/nvimtools/none-ls.nvim/wiki/Formatting-on-save
@@ -282,7 +286,6 @@ return {
           end
         end,
         sources = {
-          null_ls.builtins.code_actions.gitsigns,
           null_ls.builtins.diagnostics.ansiblelint,
           require("none-ls.diagnostics.eslint"),
           null_ls.builtins.diagnostics.golangci_lint,
