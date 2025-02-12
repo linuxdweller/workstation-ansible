@@ -13,7 +13,6 @@ return {
         "astro",
         "clangd",
         "dockerls",
-        "emmet_ls",
         "gopls",
         "helm_ls",
         "pyright",
@@ -52,11 +51,10 @@ return {
       vim.api.nvim_set_keymap('n', '<leader>fb', "", {noremap = true, callback = builtin.current_buffer_fuzzy_find})
 
       vim.api.nvim_set_keymap('n', '<leader>fh', "", {noremap = true, callback = builtin.command_history})
-      vim.api.nvim_set_keymap('n', '<leader>fc', "", {noremap = true, callback = builtin.commands})
       vim.api.nvim_set_keymap('n', '<leader>fr', "", {noremap = true, callback = builtin.lsp_references})
       vim.api.nvim_set_keymap('n', '<leader>fd', "", {noremap = true, callback = builtin.lsp_definitions})
       vim.api.nvim_set_keymap('n', '<leader>fi', "", {noremap = true, callback = builtin.lsp_implementations})
-      vim.api.nvim_set_keymap('n', '<leader>fo', "", {noremap = true, callback = builtin.oldfiles})
+      vim.api.nvim_set_keymap('n', '<leader>ft', "", {noremap = true, callback = builtin.lsp_type_definitions})
     end
   },
   {
@@ -67,13 +65,6 @@ return {
     opts = {
       keymap = {
         preset = "super-tab"
-      },
-      sources = {
-        providers = {
-          lsp = {
-            score_offset = 3
-          }
-        }
       },
       completion = {
         documentation = {
@@ -251,10 +242,12 @@ return {
   {
     "nvimtools/none-ls.nvim",
     dependencies = {
+      -- Required for eslint_d and prettierd sources.
       "nvimtools/none-ls-extras.nvim",
     },
     config = function()
       local null_ls = require("null-ls")
+      local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
       null_ls.setup({
         on_attach = function(client, bufnr)
         -- Source: https://github.com/nvimtools/none-ls.nvim/wiki/Formatting-on-save
