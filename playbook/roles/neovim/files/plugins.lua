@@ -34,33 +34,19 @@ return {
     opts = {},
   },
   {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
+    "folke/snacks.nvim",
+    keys = {
+      { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
+      { "<leader>fg", function() Snacks.picker.grep() end, desc = "Grep" },
+      { "<leader>fd", function() Snacks.picker.lsp_definitions() end, desc = "Goto definition." },
+      { "<leader>fr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
+      { "<leader>ft", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto Type Definition" },
     },
-    config = function()
-      local telescope_actions = require('telescope.actions')
-      local telescope_actions_state = require('telescope.actions.state')
-      require('telescope').setup({})
-      require('telescope').load_extension('fzf')
-      builtin = require('telescope.builtin')
-
-      vim.api.nvim_set_keymap('n', '<leader>ff', "", {noremap = true, callback = builtin.find_files})
-      vim.api.nvim_set_keymap('n', '<leader>fg', "", {noremap = true, callback = builtin.live_grep})
-      vim.api.nvim_set_keymap('n', '<leader>fb', "", {noremap = true, callback = builtin.current_buffer_fuzzy_find})
-
-      vim.api.nvim_set_keymap('n', '<leader>fh', "", {noremap = true, callback = builtin.command_history})
-      vim.api.nvim_set_keymap('n', '<leader>fr', "", {noremap = true, callback = builtin.lsp_references})
-      vim.api.nvim_set_keymap('n', '<leader>fd', "", {noremap = true, callback = builtin.lsp_definitions})
-      vim.api.nvim_set_keymap('n', '<leader>fi', "", {noremap = true, callback = builtin.lsp_implementations})
-      vim.api.nvim_set_keymap('n', '<leader>ft', "", {noremap = true, callback = builtin.lsp_type_definitions})
-    end
   },
   {
     "saghen/blink.cmp",
     lazy = false,
-    dependencies = { "rafamadriz/friendly-snippets",  "xzbdmw/colorful-menu.nvim" },
+    dependencies = { "rafamadriz/friendly-snippets",  "xzbdmw/colorful-menu.nvim", "nvim-lua/plenary.nvim" },
     version = "v0.*",
     opts = {
       keymap = {
