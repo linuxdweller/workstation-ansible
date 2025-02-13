@@ -99,7 +99,11 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    -- Specify for lazy the main module to use for config() and opts().
     main = "nvim-treesitter.configs",
+    -- Lazy will execute this on install or update of the plugin.
+    -- We want to update our parsers when the plugin is updated or installed.
+    build = ":TSUpdate",
     opts = {
       ensure_installed = {
         "bash",
@@ -128,89 +132,13 @@ return {
         "typescript",
         "yaml",
       },
+      -- Automatically install missing parsers when entering buffer
       auto_install = true,
       highlight = {
+        -- Enable the sytax highlighting module. All modules are disabled by default.
         enable = true,
       },
-      textobjects = {
-        -- For more queries see:
-        -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects/tree/master/queries
-        select = {
-          enable = true,
-          lookahead = true,
-          keymaps = {
-            ["af"] = { query = "@function.outer" },
-            ["if"] = { query = "@function.inner" },
-            ["ac"] = { query = "@class.outer" },
-            ["ic"] = { query = "@class.inner" },
-            ["al"] = { query = "@loop.outer" },
-            ["il"] = { query = "@loop.inner" },
-            ["ai"] = { query = "@conditional.outer"},
-            ["ii"] = { query = "@conditional.inner"},
-            ["ab"] = { query = "@block.outer" },
-            ["ib"] = { query = "@block.inner" },
-            ["a/"] = { query = "@comment.outer" },
-            ["i/"] = { query = "@comment.inner" },
-            ["as"] = { query = "@scope", query_group = "locals" },
-          },
-        },
-        swap = {
-          enable = true,
-          swap_next = {
-            ["<leader>]p"] = { query = "@parameter.inner" },
-            ["<leader>]m"] = { query = "@function.outer" },
-            ["<leader>]]"] = { query = "@class.outer" },
-            ["<leader>]l"] = { query = "@loop.outer" },
-            ["<leader>]i"] = { query = "@conditional.outer" },
-          },
-          swap_previous = {
-            ["<leader>[p"] = { query = "@parameter.inner" },
-            ["<leader>[m"] = { query = "@function.outer" },
-            ["<leader>[]"] = { query = "@class.outer" },
-            ["<leader>[l"] = { query = "@loop.outer" },
-            ["<leader>[i"] = { query = "@conditional.outer" },
-          },
-        },
-        move = {
-          enable = true,
-          set_jumps = true,
-          goto_next_start = {
-            ["]p"] = { query = "@parameter.inner" },
-            ["]m"] = { query = "@function.inner" },
-            ["]]"] = { query = "@class.inner", desc = "Next class start" },
-            ["]l"] = { query = "@loop.inner" },
-            ["]i"] = { query = "@conditional.inner" },
-          },
-          goto_next_end = {
-            ["]P"] = { query = "@parameter.inner" },
-            ["]M"] = { query = "@function.inner" },
-            ["]["] = { query = "@class.inner" },
-            ["]L"] = { query = "@loop.inner" },
-            ["]I"] = { query = "@conditional.inner" },
-          },
-          goto_previous_start = {
-            ["[p"] = { query = "@parameter.inner" },
-            ["[m"] = { query = "@function.inner" },
-            ["[["] = { query = "@class.inner" },
-            ["[l"] = { query = "@loop.inner" },
-            ["[i"] = { query = "@conditional.inner" },
-          },
-          goto_previous_end = {
-            ["[P"] = { query = "@parameter.inner" },
-            ["[M"] = { query = "@function.inner" },
-            ["[]"] = { query = "@class.inner" },
-            ["[L"] = { query = "@loop.inner" },
-            ["[I"] = { query = "@conditional.inner" },
-          }
-        },
-      }
     }
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter"
-    },
   },
   {
     "catppuccin/nvim",
