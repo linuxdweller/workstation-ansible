@@ -179,18 +179,16 @@ return {
         end,
         sources = {
           null_ls.builtins.diagnostics.ansiblelint,
-          require("none-ls.diagnostics.eslint_d"),
           null_ls.builtins.diagnostics.golangci_lint,
           null_ls.builtins.diagnostics.hadolint,
           null_ls.builtins.diagnostics.mypy,
           null_ls.builtins.diagnostics.pylint,
           null_ls.builtins.diagnostics.stylelint,
+          null_ls.builtins.formatting.biome,
           null_ls.builtins.formatting.black,
-          require("none-ls.formatting.eslint_d"),
           null_ls.builtins.formatting.gofmt,
           null_ls.builtins.formatting.goimports,
           null_ls.builtins.formatting.packer,
-          null_ls.builtins.formatting.prettierd,
           null_ls.builtins.formatting.terraform_fmt
         }
       })

@@ -79,6 +79,13 @@
       - npm
     state: latest
 
+- name: biome is present
+  become: true
+  community.general.npm:
+    name: "@biomejs/biome"
+    global: true
+    state: latest
+
 - name: prettierd is present
   become: true
   community.general.npm:
